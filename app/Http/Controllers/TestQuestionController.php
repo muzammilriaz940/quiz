@@ -52,39 +52,39 @@ class TestQuestionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\TestQuestion  $test
+     * @param  \App\TestQuestion  $testquestion
      * @return \Illuminate\Http\Response
      */
-    public function show(TestQuestion $test)
+    public function show(TestQuestion $testquestion)
     {
-        return view('testquestions.show',compact('test'));
+        return view('testquestions.show',compact('testquestion'));
     } 
      
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\TestQuestion  $test
+     * @param  \App\TestQuestion  $testquestion
      * @return \Illuminate\Http\Response
      */
-    public function edit(TestQuestion $test)
+    public function edit(TestQuestion $testquestion)
     {
-        return view('testquestions.edit',compact('test'));
+        return view('testquestions.edit',compact('testquestion'));
     }
     
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TestQuestion  $test
+     * @param  \App\TestQuestion  $testquestion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TestQuestion $test)
+    public function update(Request $request, TestQuestion $testquestion)
     {
         $request->validate([
             'name' => 'required',
         ]);
     
-        $test->update($request->all());
+        $testquestion->update($request->all());
     
         return redirect()->route('testquestions.index')->with('success','TestQuestion Updated Successfully');
     }
@@ -92,13 +92,13 @@ class TestQuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\TestQuestion  $test
+     * @param  \App\TestQuestion  $testquestion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TestQuestion $test)
+    public function destroy(TestQuestion $testquestion)
     {
-        $test->delete();
-    
-        return redirect()->route('testquestions.index')->with('success','TestQuestion Deleted Successfully');
+        $testId = $testquestion->testId;
+        $testquestion->delete();
+        return redirect()->route('tests.show', $testId)->with('success','Test Question Deleted Successfully');
     }
 }

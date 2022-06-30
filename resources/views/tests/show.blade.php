@@ -58,13 +58,23 @@
                                 @endforeach
                             </ol>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label>Correct Option</label>
                             <p>{{ $question->correct_option }}</p>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label>Total Marks</label>
                             <p>{{ $question->total_marks }}</p>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Action</label>
+                            <form action="{{ route('testquestions.destroy',$question->id) }}" method="POST">
+                                <!-- <a class="btn btn-primary" href="{{ route('tests.edit',$test->id) }}">Edit</a> -->
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="testId" class="form-control" value="{{ $test->id }}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
                         </div>
                     </div>
                     @if(!$loop->last)
@@ -143,4 +153,7 @@
 </style>
 @stop
 @section('js')
+<script type="text/javascript">
+  $('body').attr('class', 'sidebar-mini sidebar-collapse');
+</script>
 @stop

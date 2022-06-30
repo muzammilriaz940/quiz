@@ -1,10 +1,11 @@
 @extends('adminlte::page')
-@section('title', 'New Exam')
+@section('title', 'Exam '.$exam->name)
 @section('content_header')
 <div class="container-fluid">
-    <div class="row">
+    <div class="row text-center">
         <div class="col-sm-12">
             <h1>@yield('title')</h1>
+            <p class="text-danger">Click on best answers and SUBMIT at end after you review.</p>
         </div>
     </div>
 </div>
@@ -19,7 +20,7 @@
                     @csrf
                     <div class="card-body">
                         <div class="row">
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" name="name" value="{{ old('name') }}">
                                 @if ($errors->has('name'))
@@ -29,41 +30,39 @@
                                 @endif
                             </div>
 
-                            <div class="form-group col-md-4">
-                                <label for="testId">Test</label>
-                                <select class="form-control{{ $errors->has('testId') ? ' is-invalid' : '' }}" id="testId" name="testId">
-                                    <option value="">Please Select</option>
-                                    @foreach(\App\Models\Test::all() as $test)
-                                    <option value="{{ $test->id }}" {{ old('testId') == $test->id ? 'selected' : '' }}>{{ $test->name }}</option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('testId'))
+                            <div class="form-group col-md-6">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" name="email" value="{{ old('email') }}">
+                                @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('testId') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label for="active">Status</label>
-                                <select class="form-control{{ $errors->has('active') ? ' is-invalid' : '' }}" id="active" name="active">
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>
-                                @if ($errors->has('active'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('active') }}</strong>
+                                    <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                                 @endif
                             </div>
                         </div>
+                        <div class="row">
+                            @foreach(\App\Models\TestQuestion::where('testId', $exam->testId)->orderBy('id', 'desc')->get() as $key => $question)
+                                <div class="form-group col-md-12">
+                                    <hr/>
+                                    <label>Question # {{ ($key+1) }}</label>
+                                    <hr/>
+                                    <p>{{ $question->description }}</p>
+                                </div>
+                                    @foreach($question->options as $key2 => $value)
+                                    <div class="form-group col-md-3">
+                                        <input required type="radio" id="{{ $value }}" name="options[{{ $question->id }}][]" value="{{ $value }}">
+                                        <label for="{{ $value }}">{{ $value }}</label><br>
+                                    </div>
+                                    @endforeach
+                            @endforeach
+                        </div>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('exams.index') }}" class="btn btn-raised btn-warning mr-1">
-                            <i class="fas fa-arrow-left"></i> Back
+                        <a href="{{ URL(\Request::url()) }}" class="btn btn-raised btn-danger mr-1">
+                            <i class="fas fa-sync"></i> Reset
                         </a>
-                        <button type="submit" class="btn btn-raised btn-primary">
-                            <i class="fa fa-save"></i> Save
+                        <button type="submit" class="btn btn-raised btn-primary float-right">
+                            <i class="fa fa-save"></i> Submit
                         </button>
                     </div>
                 </form>

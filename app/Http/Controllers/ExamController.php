@@ -107,6 +107,8 @@ class ExamController extends Controller
     {
         $exam = Exam::where('url', $request->url)->first();
         if(!empty($exam)){
+            config(['adminlte.classes_body' => 'sidebar-hidden']);
+            config(['adminlte.usermenu_enabled' => false]);
             return view('exams.form', compact('exam'));
         }else{
             dd("Not Found!");

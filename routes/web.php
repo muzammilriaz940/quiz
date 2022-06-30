@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TestQuestionController;
   
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('tests', TestController::class);
+    Route::resource('testquestions', TestQuestionController::class);
     Route::resource('exams', ExamController::class);
     Route::resource('users', UserController::class);
 });

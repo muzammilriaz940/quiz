@@ -42,7 +42,7 @@ class ExamController extends Controller
             'testId' => 'required',
         ]);
 
-        $request->merge(['url' => \Request::root().'/'.Str::random(40)]);
+        $request->merge(['url' => Str::random(40)]);
     
         Exam::create($request->all());
      
@@ -101,5 +101,15 @@ class ExamController extends Controller
         $exam->delete();
     
         return redirect()->route('exams.index')->with('success','Exam deleted successfully');
+    }
+
+    public function form(Request $request)
+    {
+        $exam = Exam::where('url', $request->url)->first();
+        if(!empty($exam)){
+            return view('exams.form', compact('exam'));
+        }else{
+            dd("Not Found!");
+        }
     }
 }

@@ -18,6 +18,8 @@ use App\Http\Controllers\TestQuestionController;
 */
 Auth::routes();
 
+Route::get('exam/{url}', [ExamController::class, 'form']);
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('tests', TestController::class);

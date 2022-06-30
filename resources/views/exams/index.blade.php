@@ -49,7 +49,7 @@
                     <td>{{ $exam->id }}</td>
                     <td>{{ $exam->name }}</td>
                     <td>{{ @\App\Models\Test::find($exam->testId)->pluck('name')->first(); }}</td>
-                    <td>{{ $exam->url }}</td>
+                    <td>{{ \Request::root().'/exam/'.$exam->url }}</td>
                     <td>{{ $exam->active }}</td>
                     <td>
                       <form action="{{ route('exams.destroy',$exam->id) }}" method="POST">

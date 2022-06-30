@@ -47,7 +47,7 @@
                     <td>{{ $test->name }}</td>
                     <td>
                       <form action="{{ route('tests.destroy',$test->id) }}" method="POST">
-                        <a class="btn btn-info" href="{{ route('tests.show',$test->id) }}">Show</a>
+                        <a class="btn btn-info" href="{{ route('tests.show',$test->id) }}">Manage</a>
                         <a class="btn btn-primary" href="{{ route('tests.edit',$test->id) }}">Edit</a>
                         @csrf
                         @method('DELETE')

@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Exam '.$exam->name)
+@section('title', $exam->name)
 @section('content_header')
 <div class="container-fluid">
     <div class="row text-center">

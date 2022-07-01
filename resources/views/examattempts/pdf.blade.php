@@ -7,6 +7,15 @@
         .text-center{
             text-align: center;
         }
+
+        .center-table{
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
     </style>
 </head>
 
@@ -38,5 +47,39 @@
         </tr>
         @endforeach
     </table>
+
+    <div class="page-break"></div>
+
+    <table width="50%" class="center-table">
+        <tr class="text-center">
+            <th colspan="5">Answer Key</th>
+        </tr>
+        <tr class="text-center">
+            <th colspan="5">{{ $exam->name }}</th>
+        </tr>
+        <tr><th colspan="5"></th></tr>
+        <tr><th colspan="5"></th></tr>
+        <tr><th colspan="5"></th></tr>
+        
+        <tr class="text-center">
+            <th colspan="1"><u>Question</u></th>
+            <th colspan="4"><u>Answer</u></th>
+        </tr>
+        @foreach($exam->test->questions as $i => $question)
+        <tr class="text-center" @if($loop->iteration % 2 == 0) style="background-color: darkgrey;" @endif>
+            <td>
+                {{ $question->id }}
+            </td>
+
+            @foreach($question->options as $key => $value)
+            <td>
+                {{ ($key+1) }}
+            </td>
+            @endforeach
+        </tr>
+        @endforeach
+    </table>
+
+    <div class="page-break"></div>
 </body>
 </html>

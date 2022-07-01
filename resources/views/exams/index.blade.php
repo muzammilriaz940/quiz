@@ -54,10 +54,12 @@
                     <td>
                       <form action="{{ route('exams.destroy',$exam->id) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('exams.show',$exam->id) }}">Show</a>
+                        @if($exam->attempts()->count() == 0)
                         <a class="btn btn-primary" href="{{ route('exams.edit',$exam->id) }}">Edit</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
+                        @endif
                       </form>
                     </td>
                   </tr>

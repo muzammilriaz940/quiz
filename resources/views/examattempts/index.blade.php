@@ -9,7 +9,7 @@
         <div class="col-sm-12">
             <h1>@yield('title')</h1>
             @if ($message = Session::get('info'))
-            <p>{{ @$message }}</p>
+            <p>{{ @$message }}.</p>
             @endif
         </div>
     </div>

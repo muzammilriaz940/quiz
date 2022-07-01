@@ -12,4 +12,9 @@ class Exam extends Model
     protected $fillable = [
         'name', 'url', 'testId', 'active'
     ];
+
+    public function attempts()
+    {
+        return $this->hasmany(ExamAttempt::class,'examId','id');
+    }
 }

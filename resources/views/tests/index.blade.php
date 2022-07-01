@@ -48,10 +48,12 @@
                     <td>
                       <form action="{{ route('tests.destroy',$test->id) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('tests.show',$test->id) }}">Manage</a>
+                        @if($test->exams()->count() == 0)
                         <a class="btn btn-primary" href="{{ route('tests.edit',$test->id) }}">Edit</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
+                        @endif
                       </form>
                     </td>
                   </tr>

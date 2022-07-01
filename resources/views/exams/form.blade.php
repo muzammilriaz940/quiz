@@ -60,7 +60,7 @@
                                 </div>
                                     @foreach($question->options as $key2 => $value)
                                     <div class="form-group col-md-3">
-                                        <input required type="radio" id="{{ $value }}" name="question[{{ $question->id }}]" value="{{ $value }}">
+                                        <input required type="radio" id="{{ $value }}" name="question[{{ $question->id }}]" value="{{ ($key2+1) }}">
                                         <label for="{{ $value }}">{{ $value }}</label><br>
                                     </div>
                                     @endforeach

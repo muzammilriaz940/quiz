@@ -43,7 +43,6 @@ class TestQuestionController extends Controller
             'total_marks' => 'required',
         ]);
         $question = new TestQuestion($request->all());
-        $question->correct_option = $question->options[$question->correct_option-1];
         $question->save();
      
         return redirect()->route('tests.show', $request->testId)->with('success','Test Question Created Successfully');

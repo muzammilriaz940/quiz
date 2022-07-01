@@ -26,13 +26,13 @@
         <tr>
             <td>
                 <ol>
-                  <li>{{ $question->description }}
-                    <ol>
+                    <li value="{{ ($i+1) }}">{{ $question->description }}
+                      <ol style="margin-top: 30px;">
                         @foreach($question->options as $key => $value)
                         <li type="A">{{ $value }}</li>
                         @endforeach
-                    </ol>
-                  </li>
+                      </ol>
+                    </li>
                 </ol>
             </td>
         </tr>

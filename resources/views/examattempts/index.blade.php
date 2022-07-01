@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Success')
+@section('title', 'Examp Attempt')
 @section('content_header')
 @stop
 
@@ -8,7 +8,9 @@
     <div class="row text-center">
         <div class="col-sm-12">
             <h1>@yield('title')</h1>
-            <p class="text-danger">We've got your submission.</p>
+            @if ($message = Session::get('info'))
+            <p>{{ @$message }}</p>
+            @endif
         </div>
     </div>
 </div>

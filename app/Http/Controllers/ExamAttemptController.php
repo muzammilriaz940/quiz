@@ -20,7 +20,7 @@ class ExamAttemptController extends Controller
      */
     public function index()
     {
-        return view('examattempts.success');
+        return view('examattempts.index');
     }
      
     /**
@@ -58,7 +58,7 @@ class ExamAttemptController extends Controller
                     $EAR->save();         
                 }
             }
-            return redirect()->route('examattempts.index');
+            return redirect()->route('examattempts.index')->with('info', "We've got your submission");
         } catch (\Exception $e) {
             dd($e->getMessage());
         }

@@ -107,11 +107,14 @@ class ExamController extends Controller
     {
         $exam = Exam::where('url', $request->url)->first();
         if(!empty($exam)){
+            if($exam->active == 0){
+                return redirect()->route('examattempts.index')->with('info', 'Exam is not active');
+            }
             config(['adminlte.classes_body' => 'sidebar-hidden']);
             config(['adminlte.usermenu_enabled' => false]);
             return view('exams.form', compact('exam'));
         }else{
-            dd("Not Found!");
+            return redirect()->route('examattempts.index')->with('info', 'Invalid Exam URL');
         }
     }
 }

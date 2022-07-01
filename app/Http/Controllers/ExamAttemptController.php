@@ -60,7 +60,7 @@ class ExamAttemptController extends Controller
             }
             return redirect()->route('examattempts.index')->with('info', "We've got your submission");
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            return redirect()->route('examattempts.index')->with('info', $e->getMessage());
         }
     }
      

@@ -7,10 +7,6 @@
         .text-center{
             text-align: center;
         }
-        
-        body ol > li::marker {
-          font-weight: bold;
-        }
     </style>
 </head>
 

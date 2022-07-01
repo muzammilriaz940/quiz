@@ -16,4 +16,9 @@ class TestQuestion extends Model
     protected $casts = [
         'options' => 'array'
     ];
+
+    public function exam_attempts()
+    {
+        return $this->hasmany(ExamAttemptRow::class,'testQuestionId','id');
+    }
 }

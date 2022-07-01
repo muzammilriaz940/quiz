@@ -39,10 +39,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-{{ $test->exams()->count() == 0 ? 6 : 12 }}">
             <div class="card card-primary card-outline">
                 <div class="card-body">
-                    @foreach(\App\Models\TestQuestion::where('testId', $test->id)->orderBy('id', 'desc')->get() as $key => $question)
+                    @foreach($test->questions()->get() as $key => $question)
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label>Question # {{ ($key+1) }}</label>
@@ -58,14 +58,15 @@
                                 @endforeach
                             </ol>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-{{ $test->exams()->count() == 0 ? 4 : 6 }}">
                             <label>Correct Option</label>
                             <p>{{ $question->correct_option }}</p>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-{{ $test->exams()->count() == 0 ? 4 : 6 }}">
                             <label>Total Marks</label>
                             <p>{{ $question->total_marks }}</p>
                         </div>
+                        @if($question->exam_attempts()->count() == 0)
                         <div class="form-group col-md-4">
                             <label>Action</label>
                             <form action="{{ route('testquestions.destroy',$question->id) }}" method="POST">
@@ -76,6 +77,7 @@
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </div>
+                        @endif
                     </div>
                     @if(!$loop->last)
                         <hr>
@@ -84,7 +86,7 @@
                 </div>
             </div>
         </div>
-
+        @if($test->exams()->count() == 0)
         <div class="col-md-6">
             <div class="card card-primary card-outline">
                 <form action="{{ route('testquestions.store') }}" method="POST">
@@ -141,6 +143,7 @@
                 </form>
             </div>
         </div>
+        @endif
     </div>
 </div>
 @stop

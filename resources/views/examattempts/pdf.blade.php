@@ -16,6 +16,21 @@
         .page-break {
             page-break-after: always;
         }
+
+        .dot{
+          height: 8px;
+          width: 8px;
+          border-radius: 50%;
+          display: inline-block;
+        }
+
+        .green-dot {
+          background-color: green;
+        }
+
+        .red-dot {
+          background-color: red;
+        }
     </style>
 </head>
 
@@ -73,7 +88,7 @@
 
             @foreach($question->options as $key => $value)
             <td>
-                {{ ($key+1) }}
+                {{ ($key+1) }}&nbsp;<span class="dot green-dot"></span>
             </td>
             @endforeach
         </tr>

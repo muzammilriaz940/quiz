@@ -23,6 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data = [
+            'foo' => 'bar'
+        ];
+        $pdf = \PDF::loadView('examattempts.pdf', $data);
+        return $pdf->save(storage_path('app/public/').'document.pdf');
+        // return view('home');
     }
 }

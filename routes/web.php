@@ -24,6 +24,7 @@ Route::get('exam/{url}', [ExamController::class, 'form']);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('tests', TestController::class);
     Route::resource('testquestions', TestQuestionController::class);
     Route::resource('exams', ExamController::class);

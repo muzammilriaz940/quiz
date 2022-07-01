@@ -17,4 +17,9 @@ class Exam extends Model
     {
         return $this->hasmany(ExamAttempt::class,'examId','id');
     }
+
+    public function test()
+    {
+        return $this->hasOne(Test::class,'id','testId');
+    }
 }

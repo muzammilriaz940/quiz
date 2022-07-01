@@ -14,8 +14,7 @@ class TestQuestionController extends Controller
      */
     public function index()
     {
-        $testquestions = TestQuestion::latest()->paginate(5);
-        return view('testquestions.index',compact('testquestions'))->with('i', (request()->input('page', 1) - 1) * 5);
+        // 
     }
      
     /**
@@ -25,7 +24,7 @@ class TestQuestionController extends Controller
      */
     public function create()
     {
-        return view('testquestions.create');
+        // 
     }
     
     /**
@@ -40,11 +39,12 @@ class TestQuestionController extends Controller
             'testId' => 'required',
             'description' => 'required',
             'options' => 'required',
-            'correct_option' => 'required|in:A,B,C,D|max:1',
+            'correct_option' => 'required|in:1,2,3,4|max:1',
             'total_marks' => 'required',
         ]);
-    
-        TestQuestion::create($request->all());
+        $question = new TestQuestion($request->all());
+        $question->correct_option = $question->options[$question->correct_option-1];
+        $question->save();
      
         return redirect()->route('tests.show', $request->testId)->with('success','Test Question Created Successfully');
     }
@@ -57,7 +57,7 @@ class TestQuestionController extends Controller
      */
     public function show(TestQuestion $testquestion)
     {
-        return view('testquestions.show',compact('testquestion'));
+        // 
     } 
      
     /**
@@ -68,7 +68,7 @@ class TestQuestionController extends Controller
      */
     public function edit(TestQuestion $testquestion)
     {
-        return view('testquestions.edit',compact('testquestion'));
+        // 
     }
     
     /**
@@ -80,13 +80,7 @@ class TestQuestionController extends Controller
      */
     public function update(Request $request, TestQuestion $testquestion)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-    
-        $testquestion->update($request->all());
-    
-        return redirect()->route('testquestions.index')->with('success','TestQuestion Updated Successfully');
+        // 
     }
     
     /**

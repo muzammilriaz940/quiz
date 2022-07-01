@@ -119,8 +119,8 @@
                             <div class="form-group col-md-6">
                                 <label for="correct_option">Correct Option</label>
                                 <select class="form-control{{ $errors->has('correct_option') ? ' is-invalid' : '' }}" id="correct_option" name="correct_option">
-                                    @foreach(['A', 'B', 'C', 'D'] as $value)
-                                        <option value="{{ $value }}">{{ $value }}</option>
+                                    @foreach(['1'=>'A', '2'=>'B', '3'=>'C', '4'=>'D'] as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('correct_option'))

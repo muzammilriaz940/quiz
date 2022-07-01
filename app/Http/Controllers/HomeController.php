@@ -23,11 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $exam = \App\Models\Exam::find(1);
-        // return view('examattempts.pdf', compact('exam'));
-        $pdf = \PDF::loadView('examattempts.pdf', compact('exam'));
+        $EA = \App\Models\ExamAttempt::find(1);
+        return view('examattempts.pdf', compact('EA'));
+        $pdf = \PDF::loadView('examattempts.pdf', compact('EA'));
         return $pdf->stream('document.pdf');
-        /*$pdf = PDF::loadView('examattempts.pdf', compact('exam'));
+        /*$pdf = PDF::loadView('examattempts.pdf', compact('EA'));
         return $pdf->download('document.pdf');*/
         // return $pdf->save(storage_path('app/public/').'document.pdf');
         // return view('home');

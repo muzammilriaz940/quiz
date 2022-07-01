@@ -35,18 +35,18 @@
 </head>
 
 <body>
-    <table width="100%">
+    <!-- <table width="100%">
         <tr class="text-center">
-            <th>{{ $exam->name }}</th>
+            <th>{{ $EA->exam->name }}</th>
         </tr>
         <tr class="text-center">
-            <td><small>({{ count($exam->test->questions) }} Questions)</small></td>
+            <td><small>({{ count($EA->exam->test->questions) }} Questions)</small></td>
         </tr>
         <tr class="text-center">
             <th><hr/></th>
         </tr>
 
-        @foreach($exam->test->questions as $i => $question)
+        @foreach($EA->exam->test->questions as $i => $question)
         <tr>
             <td>
                 <ol>
@@ -61,7 +61,7 @@
             </td>
         </tr>
         @endforeach
-    </table>
+    </table> -->
 
     <div class="page-break"></div>
 
@@ -70,7 +70,7 @@
             <th colspan="5">Answer Key</th>
         </tr>
         <tr class="text-center">
-            <th colspan="5">{{ $exam->name }}</th>
+            <th colspan="5">{{ $EA->exam->name }}</th>
         </tr>
         <tr><th colspan="5"></th></tr>
         <tr><th colspan="5"></th></tr>
@@ -80,7 +80,7 @@
             <th colspan="1"><u>Question</u></th>
             <th colspan="4"><u>Answer</u></th>
         </tr>
-        @foreach($exam->test->questions as $i => $question)
+        @foreach($EA->exam->test->questions as $i => $question)
         <tr class="text-center" @if($loop->iteration % 2 == 0) style="background-color: darkgrey;" @endif>
             <td>
                 {{ $question->id }}
@@ -88,7 +88,17 @@
 
             @foreach($question->options as $key => $value)
             <td>
-                {{ ($key+1) }}&nbsp;<span class="dot green-dot"></span>
+
+                <?php
+                    if($EA->answers->where('testQuestionId', $question->id)->first()->answer == $key+1){
+                        $dot = "green-dot";
+                    }
+
+                    if($EA->answers->where('testQuestionId', $question->id)->first()->answer == $key+1){
+                        $dot = "green-dot";
+                    }
+                ?>
+                {{ ($key+1) }}&nbsp;<span class="dot {{ $dot }}"></span>
             </td>
             @endforeach
         </tr>

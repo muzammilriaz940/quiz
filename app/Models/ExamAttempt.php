@@ -12,4 +12,14 @@ class ExamAttempt extends Model
     protected $fillable = [
         'examId', 'studentName', 'studentEmail'
     ];
+
+    public function exam()
+    {
+        return $this->hasOne(Exam::class,'id','examId');
+    }
+
+    public function answers()
+    {
+        return $this->hasmany(ExamAttemptRow::class,'examAttemptId','id');
+    }
 }

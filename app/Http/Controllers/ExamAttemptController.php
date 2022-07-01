@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class ExamAttemptController extends Controller
 {
+    public function __construct(){
+        config(['adminlte.classes_body' => 'sidebar-hidden']);
+        config(['adminlte.usermenu_enabled' => false]);
+    }
+
     /**
      * Display a listing of the resource.
      *

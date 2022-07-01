@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ExamController;
-use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ExamController;
+use App\Http\Controllers\ExamAttemptController;
+use App\Http\Controllers\ExamAttemptRowController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\TestQuestionController;
   
 /*
@@ -25,5 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('tests', TestController::class);
     Route::resource('testquestions', TestQuestionController::class);
     Route::resource('exams', ExamController::class);
+    Route::resource('examattempts', ExamAttemptController::class);
+    Route::resource('examattemptrows', ExamAttemptRowController::class);
     Route::resource('users', UserController::class);
 });

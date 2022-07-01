@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
    
 use App\Models\ExamAttempt;
+use App\Models\ExamAttemptRow;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class ExamAttemptController extends Controller
 {
@@ -15,8 +15,7 @@ class ExamAttemptController extends Controller
      */
     public function index()
     {
-        $examattempts = ExamAttempt::latest()->paginate(5);
-        return view('examattempts.index',compact('examattempts'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('examattempts.success');
     }
      
     /**
@@ -26,7 +25,7 @@ class ExamAttemptController extends Controller
      */
     public function create()
     {
-        return view('examattempts.create');
+        // 
     }
     
     /**
@@ -40,14 +39,24 @@ class ExamAttemptController extends Controller
         $request->validate([
             'examId' => 'required',
             'studentName' => 'required',
-            'studentEmail' => 'required',
+            'studentEmail' => 'unique:exam_attempts,studentEmail',
         ]);
 
-        $request->merge(['url' => Str::random(40)]);
-    
-        ExamAttempt::create($request->all());
-     
-        return redirect()->route('examattempts.index')->with('success','Exam Attempt Created Successfully.');
+        try {
+            $EA = new ExamAttempt($request->all());
+            if($EA->save()){
+                foreach($request->question as $questionId => $answer){
+                    $EAR = new ExamAttemptRow($request->all());
+                    $EAR->ExamAttemptId = $EA->id;                
+                    $EAR->testQuestionId = $questionId;                
+                    $EAR->answer = $answer;      
+                    $EAR->save();         
+                }
+            }
+            return redirect()->route('examattempts.index');
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
     }
      
     /**
@@ -58,7 +67,7 @@ class ExamAttemptController extends Controller
      */
     public function show(ExamAttempt $examattempt)
     {
-        return view('examattempts.show',compact('examattempt'));
+        // 
     } 
      
     /**
@@ -69,7 +78,7 @@ class ExamAttemptController extends Controller
      */
     public function edit(ExamAttempt $examattempt)
     {
-        return view('examattempts.edit',compact('examattempt'));
+        // 
     }
     
     /**
@@ -81,15 +90,7 @@ class ExamAttemptController extends Controller
      */
     public function update(Request $request, ExamAttempt $examattempt)
     {
-        $request->validate([
-            'examId' => 'required',
-            'studentName' => 'required',
-            'studentEmail' => 'required',
-        ]);
-    
-        $examattempt->update($request->all());
-    
-        return redirect()->route('examattempts.index')->with('success','Exam Attempt Updated Successfully');
+        // 
     }
     
     /**
@@ -100,8 +101,6 @@ class ExamAttemptController extends Controller
      */
     public function destroy(ExamAttempt $examattempt)
     {
-        $examattempt->delete();
-    
-        return redirect()->route('examattempts.index')->with('success','Exam Attempt Deleted Successfully');
+        // 
     }
 }

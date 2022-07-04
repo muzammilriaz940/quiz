@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            @foreach(\App\Models\TestQuestion::where('testId', $exam->testId)->orderBy('id', 'desc')->get() as $key => $question)
+                            @foreach(\App\Models\TestQuestion::orderBy('id')->where('testId', $exam->testId)->get() as $key => $question)
                                 <div class="form-group col-md-12">
                                     <hr/>
                                     <label>Question # {{ ($key+1) }}</label>

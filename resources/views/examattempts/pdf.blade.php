@@ -35,7 +35,7 @@
 </head>
 
 <body>
-    <!-- <table width="100%">
+    <table width="100%">
         <tr class="text-center">
             <th>{{ $EA->exam->name }}</th>
         </tr>
@@ -61,7 +61,7 @@
             </td>
         </tr>
         @endforeach
-    </table> -->
+    </table>
 
     <div class="page-break"></div>
 
@@ -83,19 +83,24 @@
         @foreach($EA->exam->test->questions as $i => $question)
         <tr class="text-center" @if($loop->iteration % 2 == 0) style="background-color: darkgrey;" @endif>
             <td>
-                {{ $question->id }}
+                {{ $i+1 }}
             </td>
 
             @foreach($question->options as $key => $value)
             <td>
-
                 <?php
-                    if($EA->answers->where('testQuestionId', $question->id)->first()->answer == $key+1){
+                    $dot = "";
+
+                    $correctAnswer = $question->correct_option;
+                    $option = ($key+1);
+                    $attemptedAnswer = $EA->answers->where('testQuestionId', $question->id)->first()->answer;
+
+                    if($correctAnswer == $option){
                         $dot = "green-dot";
                     }
 
-                    if($EA->answers->where('testQuestionId', $question->id)->first()->answer == $key+1){
-                        $dot = "green-dot";
+                    if($attemptedAnswer == $option && empty($dot)){
+                        $dot = "red-dot";
                     }
                 ?>
                 {{ ($key+1) }}&nbsp;<span class="dot {{ $dot }}"></span>

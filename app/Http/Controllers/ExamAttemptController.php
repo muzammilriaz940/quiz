@@ -62,7 +62,9 @@ class ExamAttemptController extends Controller
             // return $pdf->stream('document.pdf');
             $s = strtotime($EA->created_at);
             $date = date('Y-m-d', $s);
-            $pdf->save(storage_path('app/public/').$EA->studentName.'-'.$date.'.pdf');
+            $path = storage_path('app/public').'/'.trim($EA->exam->name);
+            File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);
+            $pdf->save($path.'/'.$EA->studentName/*.'-'.$date*/.'.pdf');
             return redirect()->route('examattempts.index')->with('info', "We've got your submission");
         } catch (\Exception $e) {
             return redirect()->route('examattempts.index')->with('info', $e->getMessage());

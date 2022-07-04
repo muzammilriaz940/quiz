@@ -61,7 +61,7 @@
 </head>
 
 <body>
-    <table width="100%">
+    <!-- <table width="100%">
         <tr class="text-center">
             <th>{{ $EA->exam->name }}</th>
         </tr>
@@ -89,24 +89,29 @@
         @endforeach
     </table>
 
-    <div class="page-break"></div>
+    <div class="page-break"></div> -->
 
-    <table width="50%" class="center-table">
-        <tr class="text-center">
-            <th colspan="5">Answer Key</th>
+    <!-- <table width="100%" class="center-table">
+        <tr class="text-right">
+            <td colspan="10">LOGO HERE</td>
         </tr>
         <tr class="text-center">
-            <th colspan="5">{{ $EA->exam->name }}</th>
+            <th colspan="10">Answer Key</th>
         </tr>
-        <tr><th colspan="5"></th></tr>
-        <tr><th colspan="5"></th></tr>
-        <tr><th colspan="5"></th></tr>
+        <tr class="text-center">
+            <th colspan="10">{{ $EA->exam->name }}</th>
+        </tr>
+        
+        <br>
         
         <tr class="text-center">
-            <th colspan="1">Name: <u>{{ $EA->studentName }}</u></th>
-            <th colspan="4">Date: <u>{{ $EA->created_at }}</u></th>
+            <td colspan="5">Name: <u>{{ $EA->studentName }}</u></td>
+            <td colspan="5">Date: <u>{{ $EA->created_at }}</u></td>
         </tr>
-        <tr><th colspan="5"></th></tr>
+        <br>
+    </table>
+
+    <table width="70%" class="center-table">
         <tr class="text-center">
             <th colspan="1"><u>Question</u></th>
             <th colspan="4"><u>Answer</u></th>
@@ -141,7 +146,7 @@
         @endforeach
     </table>
 
-    <div class="page-break"></div>
+    <div class="page-break"></div> -->
 
     <table width="100%">
         <tr>
@@ -429,7 +434,7 @@ encircling hands technique.</p></td>
             </td>
         </tr>
     </table>
-
+    <div class="page-break"></div>
     <table width="100%">
         <tr>
             <td colspan="5">Basic Life Support<br><h2>Infant CPR <br>Skills Testing Checklist(2 of 2)</h2></td>

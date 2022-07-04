@@ -43,16 +43,11 @@
                         <div class="row">
                             <?php
                                 $path = storage_path('app/public').'/'.trim($exam->name);
-
                                 $filesInFolder = File::allFiles($path);
-
-
                                 foreach($filesInFolder as $key => $path){
                                   $files = pathinfo($path);
                                   $allMedia[] = $files['basename'];
                                 }
-
-
                                 foreach($allMedia as $key => $pdf){
                             ?>
                             <div class="form-group col-md-4">

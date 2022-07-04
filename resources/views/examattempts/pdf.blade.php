@@ -39,7 +39,7 @@
         }
 
         table {
-            font-size: 12px;
+            font-size: 14px;
         }
 
         .table-border{
@@ -61,7 +61,7 @@
 </head>
 
 <body>
-    <!-- <table width="100%">
+    <table width="100%">
         <tr class="text-center">
             <th>{{ $EA->exam->name }}</th>
         </tr>
@@ -141,7 +141,7 @@
         @endforeach
     </table>
 
-    <div class="page-break"></div> -->
+    <div class="page-break"></div>
 
     <table width="100%">
         <tr>
@@ -285,6 +285,198 @@ approach the scene and ensure that itis safe. Demonstrate what you would do next
 must receive remediation. Make a note here of which skills require remediation (refer to instructor manual for
 information about remediation).
 </li>
+                </ul>
+            </td>
+        </tr>
+        <tr class="border-top text-center">
+            <td colspan="6" class="border-right">
+                <p><b>Test Results</b>&nbsp;&nbsp;&nbsp; Cheak <b>PASS</b> or <b>NR</b> to indicate pass or needs remediation:
+            </td>
+            <td colspan="2" class="border-right">
+                <input type="checkbox" checked> PASS
+            </td>
+            <td colspan="2">
+                <input type="checkbox" > NR
+            </td>
+        </tr>
+        <tr class="border-top text-center">
+            <td colspan="10">
+                <p>Instructor Initials _____________________
+                &nbsp;&nbsp;&nbsp;Instructor Number ____________
+                &nbsp;&nbsp;&nbsp;Date ____________</p>
+            </td>
+        </tr>
+    </table>
+    <div class="page-break"></div>
+    <table width="100%">
+        <tr>
+            <td colspan="5">Basic Life Support<br><h2>Infant CPR <br>Skills Testing Checklist(1 of 2)</h2></td>
+            <td colspan="5" class="text-right">LOGO HERE</td>
+        </tr>
+        <tr>
+            <td colspan="5" class="text-left">Student Name: <u>{{ $EA->studentName }}</u></td>
+            <td colspan="5" class="text-right">Date of Test: <u>{{ $EA->studentName }}</u> </td>
+        </tr>
+        <tr class="text-left">
+            <td colspan="10">
+                <p>Hospital Scenario: “You are working in a hospital or clinic when a woman runs through the door, carrying an infant. She
+shouts, ‘Help me! My baby’s not breathing.’ You have gloves and a pocket mask. You send your coworker to activate the
+emergency response system and to get the emergency equipment.”Prehospital Scenario: “You arrive on the scene for an infant who is not breathing. No bystander CPR has been provided.
+You approach the scene and ensure that it is safe. Demonstrate what you would do next.”</p>
+            </td>
+        </tr>
+    </table>
+
+    <table width="100%" class="table-border">
+        <tr>
+            <td colspan="10"><b>Assesments & Activation</b></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <input type="checkbox" checked> Checks Responsiveness
+            </td>
+            <td colspan="5">
+                <input type="checkbox" checked> Shouts for help/Activates emergency response system/Sends for AED
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <input type="checkbox" checked> Checks Breathing
+            </td>
+            <td colspan="5">
+                <input type="checkbox" checked> Checks Pulse
+            </td>
+        </tr>
+    </table>
+
+    <table width="100%">
+    <tr>
+        <td><p>Once student shouts for help, instructor says, “Here's the barrier device.”</p></td>
+    </tr>
+    </table>
+
+    <table width="100%" class="table-border">
+        <tr>
+            <td colspan="10"><b>Cycle 1 of CPR(30:2) *CPR feedback devices are preferred for accuracy</b></td>
+        </tr>
+        <tr>
+            <td colspan="10">
+                <input type="checkbox" checked> <b>Infant Compressions</b>
+                <ul>
+                    <li>Performs high-quality compressions*:</li>
+                    <li>Placement of 2 fingers or 2 thumbs in the center of the chest, just below the nipple line</li>
+                    <li>30 compressions in no less than 15 and no more than 18 seconds</li>
+                    <li>Compresses at least one third the depth of the chest, approximately 1% inches (4 cm)</li>
+                    <li>Complete recoil after each compression</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="10">
+                <input type="checkbox" checked> <b>Infant Breaths</b>
+                <ul>
+                    <li>Gives 2 breaths with a barrier device:</li>
+                    <li>Each breath given over 1 second</li>
+                    <li>Visible chest rise with each breath</li>
+                    <li>Resumes compressions in less than 10 seconds</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table width="100%" class="table-border">
+        <tr>
+            <td colspan="10"><b>Cycle 2 of CPR(repeats stepsin Cycle 1) Only check box if step is successfully performed</b></td>
+        </tr>
+        <tr>
+            <td colspan="10">
+                <input type="checkbox" checked> Compressions
+                <input type="checkbox" checked> Breaths
+                <input type="checkbox" checked> Resumes compressions in less than 10 seconds
+            </td>
+        </tr>
+    </table>
+
+    <table width="100%">
+    <tr>
+        <td><p>Rescuer 2 arrives with bag-mask device and begins ventilation while Rescuer 1 continues compressions with 2 thumb—
+encircling hands technique.</p></td>
+    </tr>
+    </table>
+
+    <table width="100%" class="table-border">
+        <tr>
+            <td colspan="10"><b>Cycle 3 of CPR</b></td>
+        </tr>
+        <tr>
+            <td colspan="10">
+                <input type="checkbox" checked> <b>Rescuer 1: Infant Compressions</b>
+                <ul>
+                    <li>Performs high-quality compressions’:</li>
+                    <li>15 compressions with 2 thumb-—encircling hands technique</li>
+                    <li>15 compressions in no less than 7 and no more than 9 seconds</li>
+                    <li>Compresses at least one third the depth of the chest, approximately 1% inches (4 cm)</li>
+                    <li>Complete recoil after each compression</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="10">
+                <input type="checkbox" checked> <b>Rescuer 2: Infant Breaths</b>
+                <ul>
+                    <li>This rescuer is not evaluated.</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <table width="100%">
+        <tr>
+            <td colspan="5">Basic Life Support<br><h2>Infant CPR <br>Skills Testing Checklist(2 of 2)</h2></td>
+            <td colspan="5" class="text-right">LOGO HERE</td>
+        </tr>
+        <tr>
+            <td colspan="5" class="text-left">Student Name: <u>{{ $EA->studentName }}</u></td>
+            <td colspan="5" class="text-right">Date of Test: <u>{{ $EA->studentName }}</u> </td>
+        </tr>
+    </table>
+
+    <table width="100%" class="table-border">
+        <tr>
+            <td colspan="10"><b>Cycle 4 of CPR</b></td>
+        </tr>
+        <tr>
+            <td colspan="10">
+                <input type="checkbox" checked> <b>Rescuer 2: Infant Compressions</b>
+                <p>This rescuer is not evaluated.</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="10">
+                <input type="checkbox" checked> <b>Rescuer 1: Infant Breaths</b>
+                <ul>
+                    <li>Gives 2 breaths with a bag-mask device:</li>
+                    <li>Each breath given over 1 second</li>
+                    <li>Visible chest rise with each breath</li>
+                    <li>Resumes compressions in less than 10 seconds</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <p class="text-center"><b>STOP TEST</b></p>
+
+    <table width="100%" style="border: 1px solid black; border-collapse: collapse;">
+        <tr class="text-left">
+            <td colspan="10"><b>Instructor Notes</b></td>
+        </tr>
+        <tr>
+            <td colspan="10">
+                <ul>
+                    <li>Place a check in the box next to each step the student completes successfully.</li>
+                    <li>lf the student does not complete all steps successfully (as indicated by at least 1 blank check box), the student
+must receive remediation. Make a note here of which skills require remediation (refer to instructor manual for
+information about remediation).</li>
                 </ul>
             </td>
         </tr>

@@ -37,15 +37,25 @@
         }
 
         .table-border{
-            border: 1px solid black;
+            border: 2pt solid cornflowerblue;
             border-radius: 12px;
+            background-color: aliceblue;
+            padding: 10px 10px 10px 10px;
+        }
+
+        .border-top{
+            border-top: 1px solid black;
+        }
+
+        .border-right{
+            border-right: 1px solid black;
         }
 
     </style>
 </head>
 
 <body>
-    <table width="100%">
+    <!-- <table width="100%">
         <tr class="text-center">
             <th>{{ $EA->exam->name }}</th>
         </tr>
@@ -125,7 +135,7 @@
         @endforeach
     </table>
 
-    <div class="page-break"></div>
+    <div class="page-break"></div> -->
 
     <table width="100%">
         <tr class="text-center">
@@ -166,7 +176,7 @@ approach the scene and ensure that itis safe. Demonstrate what you would do next
 
     <table width="100%">
     <tr>
-        <p>Once student shouts for help, instructor says, “Here's the barrier device. | am going to get the AED.”</p>
+        <td><p>Once student shouts for help, instructor says, “Here's the barrier device. | am going to get the AED.”</p></td>
     </tr>
     </table>
 
@@ -201,13 +211,89 @@ approach the scene and ensure that itis safe. Demonstrate what you would do next
     <br>
     <table width="100%" class="table-border">
         <tr>
-            <td colspan="9"><b>Cycle 2 of CPR (repeats stepsin Cycle 1) Only check box if step is successfully performed</b></td>
+            <td colspan="10"><b>Cycle 2 of CPR (repeats stepsin Cycle 1) Only check box if step is successfully performed</b></td>
         </tr>
         <tr>
-            <td colspan="9">
+            <td colspan="10">
                 <input type="checkbox" checked> Compressions
-                <input type="checkbox" checked> Compressions
-                <input type="checkbox" checked> Compressions
+                <input type="checkbox" checked> Breaths
+                <input type="checkbox" checked> Resumes compressions in less than 10 seconds
+            </td>
+        </tr>
+    </table>
+
+    <table width="100%">
+    <tr>
+        <td><p>Rescuer 2 says, “Here is the AED. I'll take over compressions, and you use the AED.”</p></td>
+    </tr>
+    </table>
+
+    <table width="100%" class="table-border">
+        <tr>
+            <td colspan="10"><b>AED (follows prompts of AED)</b></td>
+        </tr>
+        <tr>
+            <td colspan="10">
+                <input type="checkbox" checked> Powers on AED
+                <input type="checkbox" checked> Correctly attaches pads
+                <input type="checkbox" checked> Clears for analysis
+            </td>
+        </tr>
+        <tr>
+            <td colspan="10">
+                <input type="checkbox" checked> Clears to safely deliver a shock
+                <input type="checkbox" checked> Safely delivers a shock
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table width="100%" class="table-border">
+        <tr>
+            <td colspan="10"><b>Resumes Compressions</b></td>
+        </tr>
+        <tr>
+            <td colspan="10">
+                <input type="checkbox" checked> Ensures compressions are resumed immediately after shock delivery
+                <ul>
+                    <li>Student directs instructor to resume compressions or</li>
+                    <li>Second student resumes compressions</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <p class="text-center"><b>STOP TEST</b></p>
+
+    <table width="100%" style="border: 1px solid black; border-collapse: collapse;">
+        <tr class="text-left">
+            <td colspan="10"><b>Instructor Notes</b></td>
+        </tr>
+        <tr>
+            <td colspan="10">
+                <ul>
+                    <li>Place a check in the box next to each step the student completes successfully.</li>
+                    <li>lf the student does not complete all steps successfully (as indicated by at least 1 blank check box), the student
+must receive remediation. Make a note here of which skills require remediation (refer to instructor manual for
+information about remediation).
+</li>
+                </ul>
+            </td>
+        </tr>
+        <tr class="border-top text-center">
+            <td colspan="6" class="border-right">
+                <p><b>Test Results</b>&nbsp;&nbsp;&nbsp; Cheak <b>PASS</b> or <b>NR</b> to indicate pass or needs remediation:
+            </td>
+            <td colspan="2" class="border-right">
+                <input type="checkbox" checked> PASS
+            </td>
+            <td colspan="2">
+                <input type="checkbox" > NR
+            </td>
+        </tr>
+        <tr class="border-top text-center">
+            <td colspan="10">
+                <p>Instructor Initials _____________________
+                &nbsp;&nbsp;&nbsp;Instructor Number ____________
+                &nbsp;&nbsp;&nbsp;Date ____________</p>
             </td>
         </tr>
     </table>

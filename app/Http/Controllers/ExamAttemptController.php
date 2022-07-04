@@ -1,7 +1,8 @@
 <?php
   
 namespace App\Http\Controllers;
-   
+
+use File;
 use App\Models\ExamAttempt;
 use App\Models\ExamAttemptRow;
 use Illuminate\Http\Request;

@@ -62,7 +62,7 @@
 </head>
 
 <body>
-    <!-- <table width="100%">
+    <table width="100%">
         <tr class="text-center">
             <th>{{ $EA->exam->name }}</th>
         </tr>
@@ -90,9 +90,9 @@
         @endforeach
     </table>
 
-    <div class="page-break"></div> -->
+    <div class="page-break"></div>
 
-    <!-- <table width="100%" class="center-table">
+    <table width="100%" class="center-table">
         <tr class="text-right">
             <td colspan="10">LOGO HERE</td>
         </tr>
@@ -147,7 +147,7 @@
         @endforeach
     </table>
 
-    <div class="page-break"></div> -->
+    <div class="page-break"></div>
 
     <table width="100%">
         <tr>
@@ -262,7 +262,7 @@ approach the scene and ensure that itis safe. Demonstrate what you would do next
             </td>
         </tr>
     </table>
-    <br>
+    <div class="page-break"></div>
     <table width="100%" class="table-border">
         <tr>
             <td colspan="10"><b>Resumes Compressions</b></td>
@@ -410,6 +410,8 @@ encircling hands technique.</p></td>
     </tr>
     </table>
 
+    <div class="page-break"></div>
+    
     <table width="100%" class="table-border">
         <tr>
             <td colspan="10"><b>Cycle 3 of CPR</b></td>

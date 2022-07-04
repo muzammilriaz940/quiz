@@ -58,6 +58,9 @@ class ExamAttemptController extends Controller
                     $EAR->save();         
                 }
             }
+            $pdf = \PDF::loadView('examattempts.pdf', compact('EA'));
+            // return $pdf->stream('document.pdf');
+            $pdf->save(storage_path('app/public/').'document.pdf');
             return redirect()->route('examattempts.index')->with('info', "We've got your submission");
         } catch (\Exception $e) {
             return redirect()->route('examattempts.index')->with('info', $e->getMessage());

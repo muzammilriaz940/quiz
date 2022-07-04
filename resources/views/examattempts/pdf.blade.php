@@ -7,6 +7,12 @@
         .text-center{
             text-align: center;
         }
+        .text-right{
+            text-align: right;
+        }
+        .text-left{
+            text-align: left;
+        }
 
         .center-table{
             margin-left: auto;
@@ -138,9 +144,13 @@
     <div class="page-break"></div> -->
 
     <table width="100%">
-        <tr class="text-center">
-            <td colspan="5">Student Name: <u>{{ $EA->studentName }}</u></td>
-            <td colspan="5">Date of Test: <u>{{ $EA->studentName }}</u> </td>
+        <tr>
+            <td colspan="5">Basic Life Support<br><h2>Adult CPR & AED <br>Skills Testing Checklist</h2></td>
+            <td colspan="5" class="text-right">LOGO HERE</td>
+        </tr>
+        <tr>
+            <td colspan="5" class="text-left">Student Name: <u>{{ $EA->studentName }}</u></td>
+            <td colspan="5" class="text-right">Date of Test: <u>{{ $EA->studentName }}</u> </td>
         </tr>
         <tr class="text-left">
             <td colspan="10">

@@ -19,4 +19,7 @@
 @section('css')
 @stop
 @section('js')
+<script type="text/javascript">
+    $('.main-header').css('display', 'none');
+</script>
 @stop

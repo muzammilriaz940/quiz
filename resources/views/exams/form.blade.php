@@ -25,14 +25,14 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card card-primary card-outline">
-                <form action="{{ route('examattempts.store') }}" method="POST">
+                <form action="{{ route('examattempts.store') }}" method="POST" id="exam-form">
                     @csrf
                     <input type="hidden" class="form-control" name="examId" value="{{ $exam->id }}">
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="studentName">Name</label>
-                                <input type="text" class="form-control{{ $errors->has('studentName') ? ' is-invalid' : '' }}" id="studentName" name="studentName" value="{{ old('studentName') }}">
+                                <input type="text" class="form-control{{ $errors->has('studentName') ? ' is-invalid' : '' }}" id="studentName" name="studentName">
                                 @if ($errors->has('studentName'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('studentName') }}</strong>
@@ -42,7 +42,7 @@
 
                             <div class="form-group col-md-6">
                                 <label for="studentEmail">Email</label>
-                                <input type="studentEmail" class="form-control{{ $errors->has('studentEmail') ? ' is-invalid' : '' }}" id="studentEmail" name="studentEmail" value="{{ old('studentEmail') }}">
+                                <input type="studentEmail" class="form-control{{ $errors->has('studentEmail') ? ' is-invalid' : '' }}" id="studentEmail" name="studentEmail">
                                 @if ($errors->has('studentEmail'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('studentEmail') }}</strong>
@@ -51,6 +51,7 @@
                             </div>
                         </div>
                         <div class="row">
+                            <!-- {{ old('question.'.$question->id) == ($key2+1) ? 'checked' : '' }} -->
                             @foreach(\App\Models\TestQuestion::where('testId', $exam->testId)->orderBy('id', 'desc')->get() as $key => $question)
                                 <div class="form-group col-md-12">
                                     <hr/>
@@ -60,9 +61,7 @@
                                 </div>
                                     @foreach($question->options as $key2 => $value)
                                     <div class="form-group col-md-3">
-                                        <input required type="radio" id="{{ $value }}" name="question[{{ $question->id }}]" value="{{ ($key2+1) }}"
-                                        {{ old('question.'.$question->id) == ($key2+1) ? 'checked' : '' }}
-                                        >
+                                        <input required type="radio" id="{{ $value }}" name="question[{{ $question->id }}]" value="{{ ($key2+1) }}">
                                         <label for="{{ $value }}">{{ $value }}</label><br>
                                     </div>
                                     @endforeach
@@ -89,5 +88,43 @@
 @section('js')
 <script type="text/javascript">
     $('.main-header').css('display', 'none');
+
+    function formToString(filledForm) {
+        formObject = new Object
+        filledForm.find("input, select, textarea").each(function() {
+            if (this.id) {
+                elem = $(this);
+                if (elem.attr("type") == 'checkbox' || elem.attr("type") == 'radio') {
+                    formObject[this.id] = elem.attr("checked");
+                } else {
+                    formObject[this.id] = elem.val();
+                }
+            }
+        });
+        formString = JSON.stringify(formObject);
+        return formString;
+    }
+
+    function stringToForm(formString, unfilledForm) {
+        formObject = JSON.parse(formString);
+        unfilledForm.find("input, select, textarea").each(function() {
+            if (this.id) {
+                id = this.id;
+                elem = $(this); 
+                if (elem.attr("type") == "checkbox" || elem.attr("type") == "radio" ) {
+                    elem.attr("checked", formObject[id]);
+                } else {
+                    elem.val(formObject[id]);
+                }
+            }
+        });
+    }
+
+    $(":input").on("keyup change", function(e) {
+        sessionStorage.setItem("formdata", formToString($("#exam-form")));
+    });
+
+    var storedform = sessionStorage.getItem("formdata");  
+    stringToForm(storedform,$("#exam-form"));
 </script>
 @stop

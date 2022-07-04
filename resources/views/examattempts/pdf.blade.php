@@ -43,9 +43,9 @@
         }
 
         .table-border{
-            border: 2pt solid cornflowerblue;
+            border: 2pt solid #0d68af;
             border-radius: 12px;
-            background-color: aliceblue;
+            background-color: #e6eaf6;
             padding: 10px 10px 10px 10px;
         }
 

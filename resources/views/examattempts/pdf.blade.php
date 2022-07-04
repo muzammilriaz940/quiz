@@ -35,7 +35,7 @@
 </head>
 
 <body>
-    <table width="100%">
+    <!-- <table width="100%">
         <tr class="text-center">
             <th>{{ $EA->exam->name }}</th>
         </tr>
@@ -61,9 +61,9 @@
             </td>
         </tr>
         @endforeach
-    </table>
+    </table> -->
 
-    <div class="page-break"></div>
+    <!-- <div class="page-break"></div>
 
     <table width="50%" class="center-table">
         <tr class="text-center">
@@ -76,6 +76,11 @@
         <tr><th colspan="5"></th></tr>
         <tr><th colspan="5"></th></tr>
         
+        <tr class="text-center">
+            <th colspan="1">Name: <u>{{ $EA->studentName }}</u></th>
+            <th colspan="4">Date: <u>{{ $EA->created_at }}</u></th>
+        </tr>
+        <tr><th colspan="5"></th></tr>
         <tr class="text-center">
             <th colspan="1"><u>Question</u></th>
             <th colspan="4"><u>Answer</u></th>
@@ -110,6 +115,6 @@
         @endforeach
     </table>
 
-    <div class="page-break"></div>
+    <div class="page-break"></div> -->
 </body>
 </html>

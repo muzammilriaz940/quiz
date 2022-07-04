@@ -94,7 +94,9 @@
             if (this.id) {
                 elem = $(this);
                 if (elem.attr("type") == 'checkbox' || elem.attr("type") == 'radio') {
-                    formObject[this.id] = elem.attr("checked");
+                    if($('#' + this.id).is(":checked")){
+                        formObject[this.id] = elem.val();    
+                    }
                 } else {
                     formObject[this.id] = elem.val();
                 }

@@ -40,6 +40,30 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row">
+                            <?php
+                                $path = storage_path('app/public').'/'.trim($exam->name);
+
+                                $filesInFolder = File::allFiles($path);
+
+
+                                foreach($filesInFolder as $key => $path){
+                                  $files = pathinfo($path);
+                                  $allMedia[] = $files['basename'];
+                                }
+
+
+                                foreach($allMedia as $key => $pdf){
+                            ?>
+                            <div class="form-group col-md-4">
+                                {{ ($key+1) }}.<a href="{{ URL('storage/'.$exam->name.'/'.$pdf) }}" target="_blank">
+                                    <i class="fa fa-file-pdf"></i> {{ $pdf }}
+                                </a>
+                            </div>
+                            <?php
+                                }
+                            ?>
+                        </div>
                     </div>
                     <div class="card-footer">
                         <a href="{{ route('exams.index') }}" class="btn btn-raised btn-warning mr-1">

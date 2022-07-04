@@ -51,7 +51,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <!-- {{ old('question.'.$question->id) == ($key2+1) ? 'checked' : '' }} -->
                             @foreach(\App\Models\TestQuestion::where('testId', $exam->testId)->orderBy('id', 'desc')->get() as $key => $question)
                                 <div class="form-group col-md-12">
                                     <hr/>

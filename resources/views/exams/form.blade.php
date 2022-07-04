@@ -122,16 +122,16 @@
     }
 
     $(":input").on("keyup change", function(e) {
-        sessionStorage.setItem("formdata", formToString($("#exam-form")));        
+        localStorage.setItem("formdata", formToString($("#exam-form")));        
     });
 
-    var storedform = sessionStorage.getItem("formdata");
+    var storedform = localStorage.getItem("formdata");
     if(storedform.length > 0){
         stringToForm(storedform,$("#exam-form"));
     }
 
     $('#reset-btn').click(function(){
-        sessionStorage.setItem("formdata", "");
+        localStorage.setItem("formdata", "");
         location.reload();
     });
 </script>

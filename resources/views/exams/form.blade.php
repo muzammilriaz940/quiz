@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ URL(\Request::url()) }}" class="btn btn-raised btn-danger mr-1">
+                        <a href="#" class="btn btn-raised btn-danger mr-1" id="reset-btn">
                             <i class="fas fa-sync"></i> Reset
                         </a>
                         <button type="submit" class="btn btn-raised btn-primary float-right">
@@ -122,11 +122,17 @@
     }
 
     $(":input").on("keyup change", function(e) {
-        sessionStorage.setItem("formdata", formToString($("#exam-form")));
-        console.log(sessionStorage.getItem("formdata"));
+        sessionStorage.setItem("formdata", formToString($("#exam-form")));        
     });
 
-    var storedform = sessionStorage.getItem("formdata");  
-    stringToForm(storedform,$("#exam-form"));
+    var storedform = sessionStorage.getItem("formdata");
+    if(storedform.length > 0){
+        stringToForm(storedform,$("#exam-form"));
+    }
+
+    $('#reset-btn').click(function(){
+        sessionStorage.setItem("formdata", "");
+        location.reload();
+    });
 </script>
 @stop

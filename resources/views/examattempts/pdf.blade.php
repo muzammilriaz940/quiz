@@ -57,6 +57,7 @@
             border-right: 1px solid black;
         }
 
+        input[type=checkbox] { display: inline; }
     </style>
 </head>
 

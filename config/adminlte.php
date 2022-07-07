@@ -242,6 +242,12 @@ return [
             'url'  => 'users',
             'icon' => 'fas fa-fw fa-user',
         ],
+
+        /*[
+            'text' => 'Configs',
+            'url'  => 'configs',
+            'icon' => 'fas fa-fw fa-cog',
+        ],*/
         // Navbar items:
         /*[
             'type'         => 'navbar-search',

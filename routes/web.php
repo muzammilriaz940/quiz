@@ -7,6 +7,7 @@ use App\Http\Controllers\ExamAttemptController;
 use App\Http\Controllers\ExamAttemptRowController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TestQuestionController;
+use App\Http\Controllers\ConfigController;
   
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::get('exam/{url}', [ExamController::class, 'form']);
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('configs', ConfigController::class);
     Route::resource('tests', TestController::class);
     Route::resource('testquestions', TestQuestionController::class);
     Route::resource('exams', ExamController::class);

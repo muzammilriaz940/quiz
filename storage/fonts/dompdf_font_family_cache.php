@@ -80,6 +80,7 @@ return array (
   ),
   'verdana' => array(
     'normal' => $fontDir . '/verdana_normal_4228c60401b1a1528c2bcb9f3a2f032b',
+    'bold' => $fontDir . '/verdana_bold_93619c56581e559c2d933b1c92b1a8e1',
   ),
 );
 }; ?>

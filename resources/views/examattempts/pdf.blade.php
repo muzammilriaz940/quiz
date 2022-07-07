@@ -58,6 +58,15 @@
         }
 
         input[type=checkbox] { display: inline; }
+
+        @font-face {
+            font-family: 'verdana';
+            src: url("{{ storage_path('fonts/verdana.ttf') }}") format('truetype');
+         }        
+        body{
+            font-family: "verdana", 
+        }
+
     </style>
 </head>
 
@@ -298,7 +307,7 @@ information about remediation).
         </tr>
         <tr class="border-top text-center">
             <td colspan="6" class="border-right">
-                <p><b>Test Results</b>&nbsp;&nbsp;&nbsp; Cheak <b>PASS</b> or <b>NR</b> to indicate pass or needs remediation:
+                <p><b>Test Results</b>&nbsp;&nbsp;&nbsp; Check <b>PASS</b> or <b>NR</b> to indicate pass or needs remediation:
             </td>
             <td colspan="2" class="border-right">
                 <input type="checkbox" checked> PASS
@@ -492,7 +501,7 @@ information about remediation).</li>
         </tr>
         <tr class="border-top text-center">
             <td colspan="6" class="border-right">
-                <p><b>Test Results</b>&nbsp;&nbsp;&nbsp; Cheak <b>PASS</b> or <b>NR</b> to indicate pass or needs remediation:
+                <p><b>Test Results</b>&nbsp;&nbsp;&nbsp; Check <b>PASS</b> or <b>NR</b> to indicate pass or needs remediation:
             </td>
             <td colspan="2" class="border-right">
                 <input type="checkbox" checked> PASS

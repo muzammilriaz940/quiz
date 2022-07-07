@@ -64,7 +64,7 @@
 <body>
     <table width="100%">
         <tr class="text-center">
-            <th>{{ $EA->exam->name }}</th>
+            <th>{{ $EA->exam->test->name }} {{ $EA->exam->name }}</th>
         </tr>
         <tr class="text-center">
             <td><small>({{ count($EA->exam->test->questions) }} Questions)</small></td>
@@ -126,6 +126,8 @@
             @foreach($question->options as $key => $value)
             <td>
                 <?php
+                    $alphabet = array("1" => "A", "2" => "B", "3" => "C", "4" => "D");
+
                     $dot = "";
 
                     $correctAnswer = $question->correct_option;
@@ -140,7 +142,7 @@
                         $dot = "red-dot";
                     }
                 ?>
-                {{ ($key+1) }}&nbsp;<span class="dot {{ $dot }}"></span>
+                {{ $alphabet[($key+1)] }}&nbsp;<span class="dot {{ $dot }}"></span>
             </td>
             @endforeach
         </tr>

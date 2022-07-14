@@ -54,12 +54,11 @@
                             @foreach(\App\Models\TestQuestion::orderBy('id')->where('testId', $exam->testId)->get() as $key => $question)
                                 <div class="form-group col-md-12">
                                     <hr/>
-                                    <label>Question # {{ ($key+1) }}</label>
+                                    <p><b>{{ ($key+1) }}.</b> {{ $question->description }}</p>
                                     <hr/>
-                                    <p>{{ $question->description }}</p>
                                 </div>
                                     @foreach($question->options as $key2 => $value)
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-12">
                                         <input required type="radio" id="{{ $value.$question->id }}" name="question[{{ $question->id }}]" value="{{ ($key2+1) }}">
                                         <label for="{{ $value.$question->id }}">{{ $value }}</label><br>
                                     </div>

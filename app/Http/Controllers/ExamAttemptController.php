@@ -66,7 +66,7 @@ class ExamAttemptController extends Controller
             $path = storage_path('app/public').'/'.trim($EA->exam->name);
             File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);
             $pdf->save($path.'/'.$EA->studentName/*.'-'.$date*/.'.pdf');
-            return redirect()->route('examattempts.index')->with('info', "We've got your submission");
+            return redirect('examattempts/'.$EA->id);
         } catch (\Exception $e) {
             return redirect()->route('examattempts.index')->with('info', $e->getMessage());
         }
@@ -78,9 +78,10 @@ class ExamAttemptController extends Controller
      * @param  \App\ExamAttempt  $examattempt
      * @return \Illuminate\Http\Response
      */
-    public function show(ExamAttempt $examattempt)
+    public function show(ExamAttempt $EA, $id)
     {
-        // 
+        $EA = ExamAttempt::find($id);
+        return view('examattempts.show', compact('EA'));
     } 
      
     /**

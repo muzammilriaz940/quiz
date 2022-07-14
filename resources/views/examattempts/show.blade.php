@@ -37,18 +37,34 @@
                             </div>
                         </div>
                         <div class="row">
-                            @foreach(\App\Models\TestQuestion::orderBy('id')->where('testId', $EA->exam->testId)->get() as $key => $question)
-                                <div class="form-group col-md-12">
+                            @foreach($EA->exam->test->questions as $i => $question)
+                                @foreach($question->options as $key => $value)
+                                <?php
+                                    $dot = "";
+
+                                    $correctAnswer = $question->correct_option;
+                                    $option = ($key+1);
+                                    $attemptedAnswer = $EA->answers->where('testQuestionId', $question->id)->first()->answer;
+
+                                    if($correctAnswer == $option){
+                                        $dot = "is-valid";
+                                    }
+
+                                    if($attemptedAnswer == $option && empty($dot)){
+                                        $dot = "is-invalid";
+                                    }
+                                ?>
+                                @if($key == 0)
+                                <div class="form-group col-md-12 {{ $attemptedAnswer == $correctAnswer ? 'text-success' : 'text-danger' }}">
                                     <hr/>
-                                    <p><b>{{ ($key+1) }}.</b> {{ $question->description }}</p>
+                                    <p><b>{{ ($i+1) }}.</b> {{ $question->description }}</p>
                                     <hr/>
                                 </div>
-                                    @foreach($question->options as $key2 => $value)
-                                    <div class="form-group col-md-12">
-                                        <input required type="radio" id="{{ $value.$question->id }}" name="question[{{ $question->id }}]" value="{{ ($key2+1) }}">
-                                        <label for="{{ $value.$question->id }}">{{ $value }}</label><br>
-                                    </div>
-                                    @endforeach
+                                @endif
+                                <div class="form-group col-md-12">
+                                    <p class="form-control no-border {{ $dot }}">{{ $value }}</p>
+                                </div>
+                                @endforeach
                             @endforeach
                         </div>
                     </div>
@@ -59,6 +75,23 @@
 @stop
 
 @section('css')
+<style type="text/css">
+    .is-valid{
+        background-color: #28a74538 !important;
+        border: none !important;
+    }
+
+    .is-invalid{
+        background-color: #dc354547 !important;
+        border: none !important;
+    }
+
+    .no-border{
+        border: none !important;
+        margin-bottom: 0 !important;
+    }
+    
+</style>
 @stop
 @section('js')
 @stop

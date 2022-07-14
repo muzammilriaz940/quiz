@@ -124,8 +124,9 @@
     <div class="page-break"></div>
 
     <table width="100%" class="center-table">
-        <tr class="text-right">
-            <td colspan="10">LOGO HERE</td>
+        <tr class="text-center">
+            <td colspan="5"><span style="color: blue;">score = {{  }}<span></td>
+            <td colspan="5">LOGO HERE</td>
         </tr>
         <tr class="text-center">
             <th colspan="10">Student Answer Sheet</th>

@@ -71,6 +71,24 @@
             font-family: "verdana", 
         }
 
+        .circle {
+            width: 16px;
+            height: 22px;
+            border: 2px solid black;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-radius: 70%;
+        }
+
+        .cross:after {
+            position:relative;
+            content:"X";
+            font-size:30px;
+            color:red;
+            top:-40px;
+        }
     </style>
 </head>
 
@@ -110,7 +128,7 @@
             <td colspan="10">LOGO HERE</td>
         </tr>
         <tr class="text-center">
-            <th colspan="10">Answer Key</th>
+            <th colspan="10">Student Answer Sheet</th>
         </tr>
         <tr class="text-center">
             <th colspan="10">{{ $EA->exam->name }}</th>
@@ -155,7 +173,7 @@
                         $dot = "red-dot";
                     }
                 ?>
-                {{ $alphabet[($key+1)] }}&nbsp;<span class="dot {{ $dot }}"></span>
+                <span class="{{ $attemptedAnswer == $option ? 'circle' : '' }} {{ $attemptedAnswer == $option && $attemptedAnswer != $correctAnswer ? 'cross' : '' }}">{{ $alphabet[($key+1)] }}</span>
             </td>
             @endforeach
         </tr>

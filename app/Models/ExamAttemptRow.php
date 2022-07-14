@@ -12,4 +12,9 @@ class ExamAttemptRow extends Model
     protected $fillable = [
         'examAttemptId', 'testQuestionId', 'answer'
     ];
+
+    public function question()
+    {
+        return $this->hasone(TestQuestion::class,'id','testQuestionId');
+    }
 }

@@ -125,7 +125,16 @@
 
     <table width="100%" class="center-table">
         <tr class="text-center">
-            <td colspan="5"><span style="color: blue;">score = {{  }}<span></td>
+            <td colspan="5"><span style="color: blue;">score = 
+                <?php
+                    $score = 0;
+                    foreach($EA->answers as $answer){
+                        if($answer->question->correct_option ==  $answer->answer){
+                            $score += $answer->question->total_marks;
+                        }
+                    }
+                ?>
+                {{ $score }}<span></td>
             <td colspan="5">LOGO HERE</td>
         </tr>
         <tr class="text-center">

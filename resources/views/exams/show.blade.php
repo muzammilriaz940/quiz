@@ -42,17 +42,12 @@
                         </div>
                         <div class="row">
                             <?php
-                                $path = storage_path('app/public').'/'.trim($exam->name);
-                                $filesInFolder = File::allFiles($path);
-                                foreach($filesInFolder as $key => $path){
-                                  $files = pathinfo($path);
-                                  $allMedia[] = $files['basename'];
-                                }
-                                foreach($allMedia as $key => $pdf){
+                                $allFiles = Storage::disk('dropbox')->allFiles($exam->name);
+                                foreach($allFiles as $key => $pdf){
                             ?>
                             <div class="form-group col-md-4">
-                                {{ ($key+1) }}.<a href="{{ URL('storage/'.$exam->name.'/'.$pdf) }}" target="_blank">
-                                    <i class="fa fa-file-pdf"></i> {{ $pdf }}
+                                {{ ($key+1) }}.<a href="{{ URL(Storage::disk('dropbox')->url($pdf)) }}" target="_blank">
+                                    <i class="fa fa-file-pdf"></i> {{ str_replace($exam->name."/", '', $pdf) }}
                                 </a>
                             </div>
                             <?php

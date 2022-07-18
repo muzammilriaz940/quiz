@@ -6,6 +6,7 @@ use File;
 use App\Models\ExamAttempt;
 use App\Models\ExamAttemptRow;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ExamAttemptController extends Controller
 {
@@ -61,11 +62,16 @@ class ExamAttemptController extends Controller
             }
             $pdf = \PDF::loadView('examattempts.pdf', compact('EA'));
             // return $pdf->stream('document.pdf');
-            $s = strtotime($EA->created_at);
-            $date = date('Y-m-d', $s);
-            $path = storage_path('app/public').'/'.trim($EA->exam->name);
-            File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);
-            $pdf->save($path.'/'.$EA->studentName/*.'-'.$date*/.'.pdf');
+            // $s = strtotime($EA->created_at);
+            // $date = date('Y-m-d', $s);
+            // $path = storage_path('app/public').'/'.trim($EA->exam->name);
+            // File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);
+            // $pdf->save($path.'/'.$EA->studentName/*.'-'.$date*/.'.pdf');
+
+            // $is_file_uploaded = Storage::disk('dropbox')->put('public-uploads',$path.'/'.$EA->studentName/*.'-'.$date*/.'.pdf');
+
+            $content = $pdf->download()->getOriginalContent();
+            Storage::disk('dropbox')->put(trim($EA->exam->name).'/'.$EA->studentName/*.'-'.$date*/.'.pdf',$content) ;
             return redirect('examattempts/'.$EA->id);
         } catch (\Exception $e) {
             return redirect()->route('examattempts.index')->with('info', $e->getMessage());

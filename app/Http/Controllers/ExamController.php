@@ -117,4 +117,31 @@ class ExamController extends Controller
             return redirect()->route('examattempts.index')->with('info', 'Invalid Exam URL');
         }
     }
+
+     /**
+      * Redirect the user to the Google authentication page.
+      *
+      * @return \Illuminate\Http\Response
+      */
+    public function redirectToProvider()
+    {
+        return \Socialite::driver('google')->with(['state' => 'redirectURL='.url()->previous()])->stateless()->redirect();
+    }
+
+    /**
+     * Obtain the user information from Google.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        try {
+            $user = \Socialite::driver('google')->stateless()->user();
+        } catch (\Exception $e) {
+            return redirect()->route('examattempts.index')->with('info', $e->getMessage());
+        }
+        $state = request()->input('state');
+        parse_str($state, $result);
+        return \Redirect::to($result['redirectURL'])->with('gmail', $user->email);
+    }
 }

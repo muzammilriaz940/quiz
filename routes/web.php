@@ -22,6 +22,8 @@ use App\Http\Controllers\ConfigController;
 Auth::routes();
 
 Route::get('exam/{url}', [ExamController::class, 'form']);
+Route::get('login/google', [App\Http\Controllers\ExamController::class, 'redirectToProvider'])->name('login-google');
+Route::get('login/google/callback', [App\Http\Controllers\ExamController::class, 'handleProviderCallback']);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

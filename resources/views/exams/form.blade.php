@@ -15,6 +15,7 @@
         <div class="col-sm-12">
             <h1>@yield('title')</h1>
             <p class="text-danger">Click on best answers and SUBMIT at end after you review.</p>
+            <a href="{{ route('login-google') }}">Login With Google</a>
         </div>
     </div>
 </div>
@@ -42,7 +43,7 @@
 
                             <div class="form-group col-md-6">
                                 <label for="studentEmail">Email</label>
-                                <input type="studentEmail" class="form-control{{ $errors->has('studentEmail') ? ' is-invalid' : '' }}" id="studentEmail" name="studentEmail">
+                                <input type="studentEmail" class="form-control{{ $errors->has('studentEmail') ? ' is-invalid' : '' }}" id="studentEmail" name="studentEmail" value="{{ Session::get('gmail') }}">
                                 @if ($errors->has('studentEmail'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('studentEmail') }}</strong>

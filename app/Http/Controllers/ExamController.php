@@ -125,7 +125,7 @@ class ExamController extends Controller
       */
     public function redirectToProvider()
     {
-        return \Socialite::driver('google')->with(['state' => 'redirectURL='.url()->previous()])->stateless()->redirect();
+        return \Socialite::driver('google')->with(['state' => 'redirectURL='.url()->previous(), "prompt" => "select_account"])->stateless()->redirect();
     }
 
     /**

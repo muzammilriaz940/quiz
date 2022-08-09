@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="studentName">Name</label>
-                                <input type="text" class="form-control{{ $errors->has('studentName') ? ' is-invalid' : '' }}" id="studentName" name="studentName">
+                                <input type="text" class="form-control{{ $errors->has('studentName') ? ' is-invalid' : '' }} exclude" id="studentName" name="studentName" value="{{ @$_COOKIE['studentName'] }}">
                                 @if ($errors->has('studentName'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('studentName') }}</strong>
@@ -43,7 +43,7 @@
 
                             <div class="form-group col-md-6">
                                 <label for="studentEmail">Email</label>
-                                <input type="studentEmail" class="form-control{{ $errors->has('studentEmail') ? ' is-invalid' : '' }}" id="studentEmail" name="studentEmail" value="{{ Session::get('gmail') }}">
+                                <input type="studentEmail" class="form-control{{ $errors->has('studentEmail') ? ' is-invalid' : '' }} exclude" id="studentEmail" name="studentEmail" value="{{ @$_COOKIE['studentEmail'] }}">
                                 @if ($errors->has('studentEmail'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('studentEmail') }}</strong>
@@ -115,7 +115,9 @@
                 if (elem.attr("type") == "checkbox" || elem.attr("type") == "radio" ) {
                     elem.attr("checked", formObject[id]);
                 } else {
-                    elem.val(formObject[id]);
+                    if(!$(this).hasClass('exclude')){
+                        elem.val(formObject[id]);
+                    }
                 }
             }
         });

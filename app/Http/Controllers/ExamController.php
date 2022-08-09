@@ -142,6 +142,8 @@ class ExamController extends Controller
         }
         $state = request()->input('state');
         parse_str($state, $result);
-        return \Redirect::to($result['redirectURL'])->with('gmail', $user->email);
+        setcookie("studentName", $user->name, time() + (86400 * 30), "/");
+        setcookie("studentEmail", $user->email, time() + (86400 * 30), "/");
+        return \Redirect::to($result['redirectURL']);
     }
 }

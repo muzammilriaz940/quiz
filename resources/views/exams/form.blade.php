@@ -15,7 +15,8 @@
         <div class="col-sm-12">
             <h1>@yield('title')</h1>
             <p class="text-danger">Click on best answers and SUBMIT at end after you review.</p>
-            <a href="{{ route('login-google') }}">Login With Google</a>
+            <a href="{{ route('login-google') }}" class="google btn"><i class="fab fa-google"></i> Login with Google
+            </a>
         </div>
     </div>
 </div>
@@ -83,6 +84,19 @@
 @stop
 
 @section('css')
+<style type="text/css">
+    .google {
+        background-color: #dd4b39;
+        color: white;
+        cursor: pointer;
+    }
+
+    .google:hover {
+        background-color: #dd4b39;
+        color: white;
+        cursor: pointer;
+    }
+</style>
 @stop
 @section('js')
 <script type="text/javascript">

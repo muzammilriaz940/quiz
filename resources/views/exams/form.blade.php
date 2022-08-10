@@ -44,7 +44,7 @@
 
                             <div class="form-group col-md-4">
                                 <label for="studentEmail">Email</label>
-                                <input type="studentEmail" class="form-control{{ $errors->has('studentEmail') ? ' is-invalid' : '' }} exclude" id="studentEmail" name="studentEmail" value="{{ @$_COOKIE['studentEmail'] }}">
+                                <input readonly type="studentEmail" class="form-control{{ $errors->has('studentEmail') ? ' is-invalid' : '' }} exclude" id="studentEmail" name="studentEmail" value="{{ @$_COOKIE['studentEmail'] }}">
                                 @if ($errors->has('studentEmail'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('studentEmail') }}</strong>

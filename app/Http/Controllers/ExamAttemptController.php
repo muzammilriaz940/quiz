@@ -71,7 +71,15 @@ class ExamAttemptController extends Controller
             $pdf = \PDF::loadView('examattempts.pdf', compact('EA'));
 
             $content = $pdf->download()->getOriginalContent();
-            $fileName = trim($EA->exam->name).'/'.'BLSXS_'.preg_replace('/\s+/', '_', $EA->studentName).'_'.date('m').'-'.date('d').'-'.date('Y').'.pdf';
+
+            $score = 0;
+            foreach($EA->answers as $answer){
+                if($answer->question->correct_option ==  $answer->answer){
+                    $score += $answer->question->total_marks;
+                }
+            }
+
+            $fileName = trim($EA->exam->name).'/'.'BLSXS_'.preg_replace('/\s+/', '_', $EA->studentName).'_'.date('m').'-'.date('d').'-'.date('Y').'_'.$score.'.pdf';
             Storage::disk('dropbox')->put($fileName, $content) ;
             return redirect('examattempts/'.$EA->id);
         } catch (\Exception $e) {

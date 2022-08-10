@@ -7,6 +7,7 @@ use App\Models\ExamAttempt;
 use App\Models\ExamAttemptRow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class ExamAttemptController extends Controller
 {
@@ -43,10 +44,17 @@ class ExamAttemptController extends Controller
      */
     public function store(Request $request)
     {
+        $examId = $request->examId; 
+        $studentEmail = $request->studentEmail; 
         $request->validate([
             'examId' => 'required',
             'studentName' => 'required',
-            'studentEmail' => 'unique:exam_attempts,studentEmail',
+            'studentEmail' => [
+                'required',
+                Rule::unique('exam_attempts')->where(function ($query) use($examId,$studentEmail) {
+                    return $query->where('examId', $examId)->where('studentEmail', $studentEmail);
+                }),
+            ],
         ]);
 
         try {

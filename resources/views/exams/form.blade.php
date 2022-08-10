@@ -32,7 +32,7 @@
                     <input type="hidden" class="form-control" name="examId" value="{{ $exam->id }}">
                     <div class="card-body">
                         <div class="row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
                                 <label for="studentName">Name</label>
                                 <input type="text" class="form-control{{ $errors->has('studentName') ? ' is-invalid' : '' }} exclude" id="studentName" name="studentName" value="{{ @$_COOKIE['studentName'] }}">
                                 @if ($errors->has('studentName'))
@@ -42,7 +42,7 @@
                                 @endif
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
                                 <label for="studentEmail">Email</label>
                                 <input type="studentEmail" class="form-control{{ $errors->has('studentEmail') ? ' is-invalid' : '' }} exclude" id="studentEmail" name="studentEmail" value="{{ @$_COOKIE['studentEmail'] }}">
                                 @if ($errors->has('studentEmail'))
@@ -50,6 +50,11 @@
                                     <strong>{{ $errors->first('studentEmail') }}</strong>
                                 </span>
                                 @endif
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="currentDate">Date</label>
+                                <input disabled type="text" class="form-control exclude" id="currentDate" name="currentDate" value="{{ date('m-d-Y') }}">
                             </div>
                         </div>
                         <div class="row">

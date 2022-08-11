@@ -55,7 +55,7 @@ return [
 
         'dropbox' => [
           'driver' => 'dropbox',
-          'token' => env('DROPBOX_TOKEN'),
+          'token' => \App\Helpers\Common::getSessionToken(),
         ],
     ],
 

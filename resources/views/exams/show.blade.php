@@ -42,7 +42,6 @@
                         </div>
                         <div class="row">
                             <?php
-                                $allFiles = Storage::disk('dropbox')->allFiles($exam->name);
                                 foreach($allFiles as $key => $pdf){
                             ?>
                             <div class="form-group col-md-4">

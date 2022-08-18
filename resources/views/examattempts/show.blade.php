@@ -42,6 +42,18 @@
                         <p>{{ $EA->studentName }}</p>
                         <p>{{ $EA->studentEmail }}</p>
                         <p>{{ explode(' ', $EA->created_at)[0] }}</p>
+                        <p>  
+                            <?php
+                                $score = 0;
+                                foreach($EA->answers as $answer){
+                                    @$totalMarks += $answer->question->total_marks;
+                                    if($answer->question->correct_option ==  $answer->answer){
+                                        $score += $answer->question->total_marks;
+                                    }
+                                }
+                            ?>
+                            {{ $score }} of {{ $totalMarks }} points
+                        </p>
                     </div>
                 </div>
 

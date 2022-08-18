@@ -74,7 +74,7 @@ class ExamAttemptController extends Controller
             $content = $pdf->download()->getOriginalContent();
 
             $fileName = $this->fileName($EA);
-            Storage::disk('dropbox')->put($fileName, $content) ;
+            Storage::disk('dropbox')->put($fileName, $content);
             return redirect('examattempts/'.$EA->id);
         } catch (\Exception $e) {
             return redirect()->route('examattempts.index')->with('info', $e->getMessage());

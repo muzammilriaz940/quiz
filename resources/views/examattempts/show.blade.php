@@ -133,5 +133,6 @@
     });
 
     $('.main-header').css('display', 'none');
+    localStorage.setItem("formdata", "");
 </script>
 @stop

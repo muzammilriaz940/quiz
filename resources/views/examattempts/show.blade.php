@@ -27,10 +27,10 @@
 
         <div class="col-md-6">
             
-            <div class="card card-primary card-outline" id="show-score">
+            <div class="card card-primary card-outline">
                 <div class="card-body">
                     <h2>You have completed the BLS Provider Course Exam<br>Thank you!</h2><br>
-                    <p><button type="button" class="btn btn-primary">View Score</button></p>
+                    <p><button type="button" id="show-score" class="btn btn-primary">View Score</button></p>
                     <p><a href="{{ URL('exam/'.$EA->exam->url) }}"><u>Submit another respose</u></a></p>
                 </div>
             </div>
@@ -38,22 +38,19 @@
             <div id="score-div" class="hidden">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
-                        <h1>@yield('title')</h1>
+                        <?php
+                            $score = 0;
+                            foreach($EA->answers as $answer){
+                                @$totalMarks += $answer->question->total_marks;
+                                if($answer->question->correct_option ==  $answer->answer){
+                                    $score += $answer->question->total_marks;
+                                }
+                            }
+                        ?>
+                        <span><h1>@yield('title')</h1> <span style="float: right;"><b>{{ $score }} of {{ $totalMarks }} points</span></b></span>
                         <p>{{ $EA->studentName }}</p>
                         <p>{{ $EA->studentEmail }}</p>
-                        <p>{{ explode(' ', $EA->created_at)[0] }}</p>
-                        <p>  
-                            <?php
-                                $score = 0;
-                                foreach($EA->answers as $answer){
-                                    @$totalMarks += $answer->question->total_marks;
-                                    if($answer->question->correct_option ==  $answer->answer){
-                                        $score += $answer->question->total_marks;
-                                    }
-                                }
-                            ?>
-                            {{ $score }} of {{ $totalMarks }} points
-                        </p>
+                        <p>{{ explode(' ', $EA->created_at)[0] }}</p>                            
                     </div>
                 </div>
 
@@ -130,5 +127,7 @@
         e.preventDefault();
         $('#score-div').toggle();
     });
+
+    $('.main-header').css('display', 'none');
 </script>
 @stop

@@ -96,6 +96,8 @@ class ExamAttemptController extends Controller
      */
     public function show(ExamAttempt $EA, $id)
     {
+        config(['adminlte.classes_body' => 'sidebar-hidden']);
+        config(['adminlte.usermenu_enabled' => false]);
         $EA = ExamAttempt::find($id);
         return view('examattempts.show', compact('EA'));
     } 

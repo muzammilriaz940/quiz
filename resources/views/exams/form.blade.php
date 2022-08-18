@@ -166,7 +166,8 @@
         stringToForm(storedform,$("#exam-form"));
     }
 
-    $('#reset-btn').click(function(){
+    $('#reset-btn').click(function(e){
+        e.preventDefault();
         localStorage.setItem("formdata", "");
         location.reload();
     });

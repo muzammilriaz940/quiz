@@ -26,48 +26,59 @@
         </div>
 
         <div class="col-md-6">
-            <div class="card card-primary card-outline">
+            
+            <div class="card card-primary card-outline" id="show-score">
                 <div class="card-body">
-                    <h1>@yield('title')</h1>
-                    <p>{{ $EA->studentName }}</p>
-                    <p>{{ $EA->studentEmail }}</p>
-                    <p>{{ explode(' ', $EA->created_at)[0] }}</p>
+                    <h2>You have completed the BLS Provider Course Exam<br>Thank you!</h2><br>
+                    <p><button type="button" class="btn btn-primary">View Score</button></p>
+                    <p><a href="{{ URL('exam/'.$EA->exam->url) }}"><u>Submit another respose</u></a></p>
                 </div>
             </div>
 
-            @foreach($EA->exam->test->questions as $i => $question)
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        @foreach($question->options as $key => $value)
-                        <?php
-                        $dot = "";
-
-                        $correctAnswer = $question->correct_option;
-                        $option = ($key+1);
-                        $attemptedAnswer = $EA->answers->where('testQuestionId', $question->id)->first()->answer;
-
-                        if($correctAnswer == $option){
-                            $dot = "is-valid";
-                        }
-
-                        if($attemptedAnswer == $option && empty($dot)){
-                            $dot = "is-invalid";
-                        }
-                        ?>
-                        @if($key == 0)
-                        <div class="form-group col-md-12 {{ $attemptedAnswer == $correctAnswer ? 'text-success' : 'text-danger' }}">
-                            <p><b>{{ ($i+1) }}.</b> {{ $question->description }}</p>
-                        </div>
-                        @endif
-                        <div class="form-group col-md-12">
-                            <p class="form-control no-border {{ $dot }}">{{ $value }}</p>
-                        </div>
-                        @endforeach
+            <div id="score-div" class="hidden">
+                <div class="card card-primary card-outline">
+                    <div class="card-body">
+                        <h1>@yield('title')</h1>
+                        <p>{{ $EA->studentName }}</p>
+                        <p>{{ $EA->studentEmail }}</p>
+                        <p>{{ explode(' ', $EA->created_at)[0] }}</p>
                     </div>
                 </div>
+
+                @foreach($EA->exam->test->questions as $i => $question)
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach($question->options as $key => $value)
+                            <?php
+                            $dot = "";
+
+                            $correctAnswer = $question->correct_option;
+                            $option = ($key+1);
+                            $attemptedAnswer = $EA->answers->where('testQuestionId', $question->id)->first()->answer;
+
+                            if($correctAnswer == $option){
+                                $dot = "is-valid";
+                            }
+
+                            if($attemptedAnswer == $option && empty($dot)){
+                                $dot = "is-invalid";
+                            }
+                            ?>
+                            @if($key == 0)
+                            <div class="form-group col-md-12 {{ $attemptedAnswer == $correctAnswer ? 'text-success' : 'text-danger' }}">
+                                <p><b>{{ ($i+1) }}.</b> {{ $question->description }}</p>
+                            </div>
+                            @endif
+                            <div class="form-group col-md-12">
+                                <p class="form-control no-border {{ $dot }}">{{ $value }}</p>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
         <div class="col-md-3">
         </div>
@@ -91,8 +102,21 @@
         border: none !important;
         margin-bottom: 0 !important;
     }
-    
+
+    .hidden{
+        display: none;
+    }   
+
+    .content-wrapper {
+        background: #e5edfa !important;
+    } 
 </style>
 @stop
 @section('js')
+<script type="text/javascript">
+    $('#show-score').click(function(e){
+        e.preventDefault();
+        $('#score-div').toggle();
+    });
+</script>
 @stop

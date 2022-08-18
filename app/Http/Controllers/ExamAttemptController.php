@@ -73,7 +73,7 @@ class ExamAttemptController extends Controller
 
             $content = $pdf->download()->getOriginalContent();
 
-            $fileName = $this->fileName($EA);
+            $fileName = $this->fileName($EA, 1);
             Storage::disk('dropbox')->put($fileName, $content);
             return redirect('examattempts/'.$EA->id);
         } catch (\Exception $e) {
@@ -81,7 +81,7 @@ class ExamAttemptController extends Controller
         }
     }
 
-    public function fileName($EA, $i = 1){
+    public function fileName($EA, $i){
         $score = 0;
         foreach($EA->answers as $answer){
             if($answer->question->correct_option ==  $answer->answer){
@@ -89,13 +89,10 @@ class ExamAttemptController extends Controller
             }
         }
 
-        $fileName = trim($EA->exam->name)."/".date('m')."-".date('d')."-".date('Y').'/'.'BLSXS_'.preg_replace('/\s+/', '_', $EA->studentName).'_'.date('m').'-'.date('d').'-'.date('Y').'_'.$score;
-        if($i > 1){
-            $fileName .= "_".$i;
-        }
-        $fileName .= ".pdf";
+        $fileName = trim($EA->exam->name)."/".date('m')."-".date('d')."-".date('Y').'/'.'BLSXS_'.preg_replace('/\s+/', '_', $EA->studentName).'_'.date('m').'-'.date('d').'-'.date('Y')."_".$i.".pdf";
+
         if(Storage::disk('dropbox')->exists($fileName)){
-            $this->fileName($EA, $i++);
+            $fileName = $this->fileName($EA, $i+1);
         }
         return $fileName;
     }

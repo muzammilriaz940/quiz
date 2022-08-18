@@ -73,19 +73,31 @@ class ExamAttemptController extends Controller
 
             $content = $pdf->download()->getOriginalContent();
 
-            $score = 0;
-            foreach($EA->answers as $answer){
-                if($answer->question->correct_option ==  $answer->answer){
-                    $score += $answer->question->total_marks;
-                }
-            }
-
-            $fileName = trim($EA->exam->name)."/".date('m')."-".date('d')."-".date('Y').'/'.'BLSXS_'.preg_replace('/\s+/', '_', $EA->studentName).'_'.date('m').'-'.date('d').'-'.date('Y').'_'.$score.'.pdf';
+            $fileName = $this->fileName($EA);
             Storage::disk('dropbox')->put($fileName, $content) ;
             return redirect('examattempts/'.$EA->id);
         } catch (\Exception $e) {
             return redirect()->route('examattempts.index')->with('info', $e->getMessage());
         }
+    }
+
+    public function fileName($EA, $i = 1){
+        $score = 0;
+        foreach($EA->answers as $answer){
+            if($answer->question->correct_option ==  $answer->answer){
+                $score += $answer->question->total_marks;
+            }
+        }
+
+        $fileName = trim($EA->exam->name)."/".date('m')."-".date('d')."-".date('Y').'/'.'BLSXS_'.preg_replace('/\s+/', '_', $EA->studentName).'_'.date('m').'-'.date('d').'-'.date('Y').'_'.$score;
+        if($i > 1){
+            $fileName .= "_".$i;
+        }
+        $fileName .= ".pdf";
+        if(Storage::disk('dropbox')->exists($fileName)){
+            $this->fileName($EA, $i++);
+        }
+        return $fileName;
     }
      
     /**

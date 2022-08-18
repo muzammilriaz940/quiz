@@ -49,6 +49,7 @@ class ExamAttemptController extends Controller
         $request->validate([
             'examId' => 'required',
             'studentName' => 'required',
+            'studentEmail' => 'required',
             /*'studentEmail' => [
                 'required',
                 Rule::unique('exam_attempts')->where(function ($query) use($examId,$studentEmail) {

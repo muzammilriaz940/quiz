@@ -118,6 +118,10 @@
 
     .content-wrapper {
         background: #e5edfa !important;
+    }  
+
+    body {
+        background: #e5edfa !important;
     } 
 </style>
 @stop

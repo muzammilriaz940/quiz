@@ -49,12 +49,12 @@ class ExamAttemptController extends Controller
         $request->validate([
             'examId' => 'required',
             'studentName' => 'required',
-            'studentEmail' => [
+            /*'studentEmail' => [
                 'required',
                 Rule::unique('exam_attempts')->where(function ($query) use($examId,$studentEmail) {
                     return $query->where('examId', $examId)->where('studentEmail', $studentEmail);
                 }),
-            ],
+            ],*/
         ]);
 
         try {
@@ -79,7 +79,7 @@ class ExamAttemptController extends Controller
                 }
             }
 
-            $fileName = trim($EA->exam->name).'/'.'BLSXS_'.preg_replace('/\s+/', '_', $EA->studentName).'_'.date('m').'-'.date('d').'-'.date('Y').'_'.$score.'.pdf';
+            $fileName = trim($EA->exam->name)."/".date('m')."-".date('d')."-".date('Y').'/'.'BLSXS_'.preg_replace('/\s+/', '_', $EA->studentName).'_'.date('m').'-'.date('d').'-'.date('Y').'_'.$score.'.pdf';
             Storage::disk('dropbox')->put($fileName, $content) ;
             return redirect('examattempts/'.$EA->id);
         } catch (\Exception $e) {

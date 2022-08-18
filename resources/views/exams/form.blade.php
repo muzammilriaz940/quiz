@@ -13,9 +13,8 @@
     @endif
     <div class="row text-center">
         <div class="col-sm-12">
-            <h1>@yield('title')</h1>
-            <p class="text-danger">Click on best answers and SUBMIT at end after you review.</p>
-            <a href="{{ route('login-google') }}" class="google btn"><i class="fab fa-google"></i> Login with Google
+            
+            {{-- <a href="{{ route('login-google') }}" class="google btn"><i class="fab fa-google"></i> Login with Google --}}
             </a>
         </div>
     </div>
@@ -25,11 +24,22 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
             <div class="card card-primary card-outline">
                 <form action="{{ route('examattempts.store') }}" method="POST" id="exam-form">
                     @csrf
                     <input type="hidden" class="form-control" name="examId" value="{{ $exam->id }}">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <h1>@yield('title')</h1>
+                                <p>Use exact name / email used to register your BLS training.<br>Answer following 25 questions. Submit when finished.</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-4">
@@ -44,17 +54,12 @@
 
                             <div class="form-group col-md-4">
                                 <label for="studentEmail">Email</label>
-                                <input readonly type="studentEmail" class="form-control{{ $errors->has('studentEmail') ? ' is-invalid' : '' }} exclude" id="studentEmail" name="studentEmail" value="{{ @$_COOKIE['studentEmail'] }}">
+                                <input type="studentEmail" class="form-control{{ $errors->has('studentEmail') ? ' is-invalid' : '' }} exclude" id="studentEmail" name="studentEmail" value="{{ @$_COOKIE['studentEmail'] }}">
                                 @if ($errors->has('studentEmail'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('studentEmail') }}</strong>
                                 </span>
                                 @endif
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label for="currentDate">Date</label>
-                                <input disabled type="text" class="form-control exclude" id="currentDate" name="currentDate" value="{{ date('m-d-Y') }}">
                             </div>
                         </div>
                         <div class="row">
@@ -84,6 +89,8 @@
                 </form>
             </div>
         </div>
+        <div class="col-md-3">
+        </div>
     </div>
 </div>
 @stop
@@ -100,6 +107,10 @@
         background-color: #dd4b39;
         color: white;
         cursor: pointer;
+    }
+
+    .content-wrapper {
+        background: #e5edfa !important;
     }
 </style>
 @stop

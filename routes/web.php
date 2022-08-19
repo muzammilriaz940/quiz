@@ -24,6 +24,7 @@ Auth::routes();
 Route::get('exam/{url}', [ExamController::class, 'form']);
 Route::get('login/google', [App\Http\Controllers\ExamController::class, 'redirectToProvider'])->name('login-google');
 Route::get('login/google/callback', [App\Http\Controllers\ExamController::class, 'handleProviderCallback']);
+Route::resource('examattempts', ExamAttemptController::class);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -32,7 +33,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('tests', TestController::class);
     Route::resource('testquestions', TestQuestionController::class);
     Route::resource('exams', ExamController::class);
-    Route::resource('examattempts', ExamAttemptController::class);
     Route::resource('examattemptrows', ExamAttemptRowController::class);
     Route::resource('users', UserController::class);
 });

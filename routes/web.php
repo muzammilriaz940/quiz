@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('configs', ConfigController::class);
+    Route::post('tests/store', [App\Http\Controllers\TestController::class, 'store'])->name('tests-store');
     Route::resource('tests', TestController::class);
     Route::resource('testquestions', TestQuestionController::class);
     Route::resource('exams', ExamController::class);

@@ -8,7 +8,8 @@ use App\Http\Controllers\ExamAttemptRowController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TestQuestionController;
 use App\Http\Controllers\ConfigController;
-  
+use Illuminate\Support\Facades\Artisan;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +20,10 @@ use App\Http\Controllers\ConfigController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('migrate',function(){
+   Artisan::call('migrate');
+});
+
 Auth::routes();
 
 Route::get('exam/{url}', [ExamController::class, 'form']);

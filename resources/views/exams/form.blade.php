@@ -187,7 +187,7 @@
         location.reload();
     });
 
-    $('#submit-btn').click(function(e){
+    $("#submit-btn").click(function(e){
         e.preventDefault();
         var isChecked = 0;
         $('.questions').each(function() {
@@ -202,6 +202,13 @@
 
         if(isChecked == 0){
             $('#exam-form').submit();
+        }
+    });
+
+    $(".questions").change(function(){
+        if ($(this).is(':checked')) {
+            var i = $(this).attr('data-question-id');
+            $('#error-'+i).hide();
         }
     });
 </script>

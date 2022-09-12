@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card card-primary card-outline">
-                <form action="{{ route('tests.store') }}" method="POST">
+                <form action="{{ route('tests-store') }}" method="POST">
                     @csrf
                     <div class="card-body">
                         <div class="row">

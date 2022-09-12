@@ -71,10 +71,13 @@
                             </div>
                             @foreach($question->options as $key2 => $value)
                             <div class="form-group col-md-12">
-                                <input required type="radio" id="{{ $value.$question->id }}" name="question[{{ $question->id }}]" value="{{ ($key2+1) }}">
+                                <input required type="radio" id="{{ $value.$question->id }}" name="question[{{ $question->id }}]" value="{{ ($key2+1) }}" class="questions" data-question-id="{{ $question->id }}">
                                 <label for="{{ $value.$question->id }}" class="not-bold">{{ $value }}</label><br>
                             </div>
                             @endforeach
+                            <div class="form-group col-md-12 hidden" id="error-{{ $question->id }}">
+                                <span class="error-message"><i class="fa fa-exclamation-circle"></i> This is a required question</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,7 +88,7 @@
                         <a href="#" class="btn btn-raised btn-danger mr-1" id="reset-btn">
                             <i class="fas fa-sync"></i> Reset
                         </a>
-                        <button type="submit" class="btn btn-raised btn-primary float-right">
+                        <button type="submit" class="btn btn-raised btn-primary float-right" id="submit-btn">
                             <i class="fa fa-save"></i> Submit
                         </button>
                     </div>
@@ -119,6 +122,14 @@
 
     .not-bold{
         font-weight: normal !important;
+    }
+
+    .error-message{
+        color: red;
+    }
+
+    .hidden{
+        display: none;
     }
 </style>
 @stop
@@ -174,6 +185,24 @@
         e.preventDefault();
         localStorage.setItem("formdata", "");
         location.reload();
+    });
+
+    $('#submit-btn').click(function(e){
+        e.preventDefault();
+        var isChecked = 0;
+        $('.questions').each(function() {
+            var name = $(this).attr('name');
+            var i = $(this).attr('data-question-id');
+            $('#error-'+i).hide();
+            if (!$("input[name='"+name+"']:checked").val()) {
+                $('#error-'+i).show();
+                isChecked = 1;
+            }
+        });
+
+        if(isChecked == 0){
+            $('#exam-form').submit();
+        }
     });
 </script>
 @stop

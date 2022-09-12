@@ -29,9 +29,9 @@
             
             <div class="card card-primary card-outline">
                 <div class="card-body">
-                    <h2>You have completed the BLS Provider Course Exam<br>Thank you!</h2><br>
+                    <h4>You have completed the BLS Provider Course Exam. Thank you!</h4><br>
                     <p><button type="button" id="show-score" class="btn btn-primary">View Score</button></p>
-                    <p><a href="{{ URL('exam/'.$EA->exam->url) }}"><u>Submit another respose</u></a></p>
+                    {{-- <p><a href="{{ URL('exam/'.$EA->exam->url) }}"><u>Submit another respose</u></a></p> --}}
                 </div>
             </div>
 
@@ -47,7 +47,7 @@
                                 }
                             }
                         ?>
-                        <span><h1>@yield('title')</h1> <span style="float: right;"><b>{{ $score }} of {{ $totalMarks }} points</span></b></span>
+                        <span><h1>@yield('title')</h1> <span style="float: right; font-size: 18px;"><b>{{ $score }} of {{ $totalMarks }} points</span></b></span>
                         <p>{{ $EA->studentName }}</p>
                         <p>{{ $EA->studentEmail }}</p>
                         <p>{{ explode(' ', $EA->created_at)[0] }}</p>                            
@@ -75,7 +75,8 @@
                             }
                             ?>
                             @if($key == 0)
-                            <div class="form-group col-md-12 {{ $attemptedAnswer == $correctAnswer ? 'text-success' : 'text-danger' }}">
+                            <div class="form-group col-md-12">
+                                {{-- {{ $attemptedAnswer == $correctAnswer ? 'text-success' : 'text-danger' }} --}}
                                 <p><b>{{ ($i+1) }}.</b> {{ $question->description }}</p>
                             </div>
                             @endif
@@ -87,6 +88,13 @@
                     </div>
                 </div>
                 @endforeach
+
+                <div class="card card-outline">
+                    <div class="card-footer">
+                        <p class="float-left">I have reviewed the correct answers.</p>
+                        <a href="{{ URL::to('/') }}" class="btn btn-raised btn-primary mr-1 float-right" id="reset-btn">Close</a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-3">
@@ -123,6 +131,14 @@
     body {
         background: #e5edfa !important;
     } 
+
+    .float-left{
+        float: left;
+    }
+
+    .float-right{
+        float: right;
+    }
 </style>
 @stop
 @section('js')

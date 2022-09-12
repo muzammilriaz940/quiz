@@ -93,7 +93,7 @@
 </head>
 
 <body>
-    <table width="100%">
+    {{-- <table width="100%">
         <tr class="text-center">
             <th>{{ $EA->exam->test->name }} {{ $EA->exam->name }}</th>
         </tr>
@@ -121,7 +121,7 @@
         @endforeach
     </table>
 
-    <div class="page-break"></div>
+    <div class="page-break"></div> --}}
 
     <table width="100%" class="center-table">
         <tr class="text-center">
@@ -148,18 +148,18 @@
         
         <tr class="text-center">
             <td colspan="5">Name: <u>{{ $EA->studentName }}</u></td>
-            <td colspan="5">Date: <u>{{ $EA->created_at }}</u></td>
+            <td colspan="5">Date: <u>{{ date('Y-m-d', strtotime($EA->created_at)) }}</u></td>
         </tr>
         <br>
     </table>
 
     <table width="70%" class="center-table">
         <tr class="text-center">
-            <th colspan="1"><u>Question</u></th>
-            <th colspan="4"><u>Answer</u></th>
+            <th colspan="1">Question</th>
+            <th colspan="4">Answer</th>
         </tr>
         @foreach($EA->exam->test->questions as $i => $question)
-        <tr class="text-center" @if($loop->iteration % 2 == 0) style="background-color: darkgrey;" @endif>
+        <tr class="text-center" @if($loop->iteration % 2 == 0) style="background-color: #bbbbbb;" @endif>
             <td>
                 {{ $i+1 }}
             </td>
@@ -199,7 +199,7 @@
         </tr>
         <tr>
             <td colspan="5" class="text-left">Student Name: <u>{{ $EA->studentName }}</u></td>
-            <td colspan="5" class="text-right">Date of Test: <u>{{ $EA->studentName }}</u> </td>
+            <td colspan="5" class="text-right">Date of Test: <u>{{ date('Y-m-d', strtotime($EA->created_at)) }}</u> </td>
         </tr>
         <tr class="text-left">
             <td colspan="10">
@@ -350,9 +350,9 @@ information about remediation).
         </tr>
         <tr class="border-top text-center">
             <td colspan="10">
-                <p>Instructor Initials _____________________
-                &nbsp;&nbsp;&nbsp;Instructor Number ____________
-                &nbsp;&nbsp;&nbsp;Date ____________</p>
+                <p>Instructor Initials <u>{{ $EA->exam->test->user->name }}</u>
+                &nbsp;&nbsp;&nbsp;Instructor Number <u>{{ $EA->exam->test->user->id }}</u>
+                &nbsp;&nbsp;&nbsp;Date <u>{{ date('Y-m-d', strtotime($EA->created_at)) }}</u></p>
             </td>
         </tr>
     </table>
@@ -364,7 +364,7 @@ information about remediation).
         </tr>
         <tr>
             <td colspan="5" class="text-left">Student Name: <u>{{ $EA->studentName }}</u></td>
-            <td colspan="5" class="text-right">Date of Test: <u>{{ $EA->studentName }}</u> </td>
+            <td colspan="5" class="text-right">Date of Test: <u>{{ date('Y-m-d', strtotime($EA->created_at)) }}</u> </td>
         </tr>
         <tr class="text-left">
             <td colspan="10">
@@ -488,7 +488,7 @@ encircling hands technique.</p></td>
         </tr>
         <tr>
             <td colspan="5" class="text-left">Student Name: <u>{{ $EA->studentName }}</u></td>
-            <td colspan="5" class="text-right">Date of Test: <u>{{ $EA->studentName }}</u> </td>
+            <td colspan="5" class="text-right">Date of Test: <u>{{ date('Y-m-d', strtotime($EA->created_at)) }}</u> </td>
         </tr>
     </table>
 
@@ -544,9 +544,9 @@ information about remediation).</li>
         </tr>
         <tr class="border-top text-center">
             <td colspan="10">
-                <p>Instructor Initials _____________________
-                &nbsp;&nbsp;&nbsp;Instructor Number ____________
-                &nbsp;&nbsp;&nbsp;Date ____________</p>
+                <p>Instructor Initials <u>{{ $EA->exam->test->user->name }}</u>
+                &nbsp;&nbsp;&nbsp;Instructor Number <u>{{ $EA->exam->test->user->id }}</u>
+                &nbsp;&nbsp;&nbsp;Date <u>{{ date('Y-m-d', strtotime($EA->created_at)) }}</u></p>
             </td>
         </tr>
     </table>

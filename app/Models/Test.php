@@ -10,7 +10,7 @@ class Test extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name', 'userId'
     ];
 
     public function exams()
@@ -21,5 +21,10 @@ class Test extends Model
     public function questions()
     {
         return $this->hasmany(TestQuestion::class,'testId','id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class,'id','userId');
     }
 }

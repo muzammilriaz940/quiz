@@ -67,12 +67,12 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <p><b>{{ ($key+1) }}.</b> {{ $question->description }}</p>
+                                <p><b>{{ ($key+1) }}. {{ $question->description }}</b></p>
                             </div>
                             @foreach($question->options as $key2 => $value)
                             <div class="form-group col-md-12">
                                 <input required type="radio" id="{{ $value.$question->id }}" name="question[{{ $question->id }}]" value="{{ ($key2+1) }}">
-                                <label for="{{ $value.$question->id }}">{{ $value }}</label><br>
+                                <label for="{{ $value.$question->id }}" class="not-bold">{{ $value }}</label><br>
                             </div>
                             @endforeach
                         </div>
@@ -115,6 +115,10 @@
 
     .content-wrapper {
         background: #e5edfa !important;
+    }
+
+    .not-bold{
+        font-weight: normal !important;
     }
 </style>
 @stop

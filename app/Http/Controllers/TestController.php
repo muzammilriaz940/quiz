@@ -39,7 +39,8 @@ class TestController extends Controller
         $request->validate([
             'name' => 'required',
         ]);
-    
+        
+        $request->merge(['userId' => auth()->user()->id]);        
         Test::create($request->all());
      
         return redirect()->route('tests.index')->with('success','Test Created Successfully');

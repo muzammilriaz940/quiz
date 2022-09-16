@@ -135,7 +135,7 @@
                     }
                 ?>
                 {{ $score }}<span></td>
-            <td colspan="5">LOGO HERE</td>
+            <td colspan="5" class="text-right"><img src="{{ public_path("img/logo.png") }}" alt="" style="width: 150px; height: 90px;"></td>
         </tr>
         <tr class="text-center">
             <th colspan="10">Student Answer Sheet</th>
@@ -195,7 +195,7 @@
     <table width="100%">
         <tr>
             <td colspan="5">Basic Life Support<br><h2>Adult CPR & AED <br>Skills Testing Checklist</h2></td>
-            <td colspan="5" class="text-right">LOGO HERE</td>
+            <td colspan="5" class="text-right"><img src="{{ public_path("img/logo.png") }}" alt="" style="width: 150px; height: 90px;"></td>
         </tr>
         <tr>
             <td colspan="5" class="text-left">Student Name: <u>{{ $EA->studentName }}</u></td>
@@ -360,7 +360,7 @@ information about remediation).
     <table width="100%">
         <tr>
             <td colspan="5">Basic Life Support<br><h2>Infant CPR <br>Skills Testing Checklist(1 of 2)</h2></td>
-            <td colspan="5" class="text-right">LOGO HERE</td>
+            <td colspan="5" class="text-right"><img src="{{ public_path("img/logo.png") }}" alt="" style="width: 150px; height: 90px;"></td>
         </tr>
         <tr>
             <td colspan="5" class="text-left">Student Name: <u>{{ $EA->studentName }}</u></td>
@@ -484,7 +484,7 @@ encircling hands technique.</p></td>
     <table width="100%">
         <tr>
             <td colspan="5">Basic Life Support<br><h2>Infant CPR <br>Skills Testing Checklist(2 of 2)</h2></td>
-            <td colspan="5" class="text-right">LOGO HERE</td>
+            <td colspan="5" class="text-right"><img src="{{ public_path("img/logo.png") }}" alt="" style="width: 150px; height: 90px;"></td>
         </tr>
         <tr>
             <td colspan="5" class="text-left">Student Name: <u>{{ $EA->studentName }}</u></td>

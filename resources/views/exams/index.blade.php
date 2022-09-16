@@ -40,6 +40,8 @@
                     <th>Test</th>
                     <th>URL</th>
                     <th>Status</th>
+                    <th>Created</th>
+                    <th>Updated</th>
                     <th width="280px">Action</th>
                   </tr>
                 </thead>
@@ -51,6 +53,8 @@
                     <td>{{ @\App\Models\Test::find($exam->testId)->pluck('name')->first(); }}</td>
                     <td>{{ \Request::root().'/exam/'.$exam->url }}</td>
                     <td>{{ $exam->active }}</td>
+                    <td>{{ $exam->created_by}} @ {{$exam->created_at }}</td>
+                    <td>@if(!empty($exam->updated_by)) {{ $exam->updated_by }} @ {{$exam->updated_at }} @endif</td>
                     <td>
                       <form action="{{ route('exams.destroy',$exam->id) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('exams.show',$exam->id) }}">Show</a>

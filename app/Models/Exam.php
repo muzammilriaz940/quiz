@@ -10,7 +10,7 @@ class Exam extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'url', 'testId', 'active'
+        'name', 'url', 'testId', 'active', 'created_by', 'updated_by'
     ];
 
     public function attempts()

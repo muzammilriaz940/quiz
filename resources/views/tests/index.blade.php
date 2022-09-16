@@ -37,6 +37,8 @@
                   <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Created</th>
+                    <th>Updated</th>
                     <th width="280px">Action</th>
                   </tr>
                 </thead>
@@ -45,6 +47,8 @@
                   <tr>
                     <td>{{ $test->id }}</td>
                     <td>{{ $test->name }}</td>
+                    <td>{{ $test->created_by}} @ {{$test->created_at }}</td>
+                    <td>@if(!empty($test->updated_by)) {{ $test->updated_by }} @ {{$test->updated_at }} @endif</td>
                     <td>
                       <form action="{{ route('tests.destroy',$test->id) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('tests.show',$test->id) }}">Manage</a>

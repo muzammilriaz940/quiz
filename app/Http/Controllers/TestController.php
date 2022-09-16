@@ -40,7 +40,8 @@ class TestController extends Controller
             'name' => 'required',
         ]);
         
-        $request->merge(['userId' => auth()->user()->id]);        
+        $request->merge(['userId' => auth()->user()->id]);      
+        $request->merge(['created_by' => auth()->user()->name]);  
         Test::create($request->all());
      
         return redirect()->route('tests.index')->with('success','Test Created Successfully');
@@ -80,7 +81,8 @@ class TestController extends Controller
         $request->validate([
             'name' => 'required',
         ]);
-    
+        
+        $request->merge(['updated_by' => auth()->user()->name]);
         $test->update($request->all());
     
         return redirect()->route('tests.index')->with('success','Test Updated Successfully');

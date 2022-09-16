@@ -38,6 +38,8 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Created</th>
+                    <th>Updated</th>
                     <th width="280px">Action</th>
                   </tr>
                 </thead>
@@ -47,6 +49,8 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->name }}</td>
+                    <td>{{ $user->created_by}} @ {{$user->created_at }}</td>
+                    <td>@if(!empty($user->updated_by)) {{ $user->updated_by }} @ {{$user->updated_at }} @endif</td>
                     <td>
                       <form action="{{ route('users.destroy',$user->id) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>

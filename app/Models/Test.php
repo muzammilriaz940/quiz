@@ -10,7 +10,7 @@ class Test extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'userId'
+        'name', 'userId', 'created_by', 'updated_by'
     ];
 
     public function exams()

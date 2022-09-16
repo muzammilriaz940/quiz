@@ -43,6 +43,7 @@ class ExamController extends Controller
         ]);
 
         $request->merge(['url' => Str::random(40)]);
+        $request->merge(['created_by' => auth()->user()->name]);
     
         Exam::create($request->all());
      
@@ -85,7 +86,8 @@ class ExamController extends Controller
             'name' => 'required',
             'testId' => 'required',
         ]);
-    
+        
+        $request->merge(['updated_by' => auth()->user()->name]);
         $exam->update($request->all());
     
         return redirect()->route('exams.index')->with('success','Exam updated successfully');

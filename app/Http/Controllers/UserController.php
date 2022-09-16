@@ -44,7 +44,7 @@ class UserController extends Controller
         ]);
 
         $request->merge(['url' => \Request::root().'/'.Str::random(40)]);
-    
+        $request->merge(['created_by' => auth()->user()->name]);
         User::create($request->all());
      
         return redirect()->route('users.index')->with('success','User Created Successfully.');
@@ -85,7 +85,8 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'unique:users,email,' . $user->id,
         ]);
-    
+        
+        $request->merge(['updated_by' => auth()->user()->name]);
         $user->update($request->all());
     
         return redirect()->route('users.index')->with('success','User updated successfully');

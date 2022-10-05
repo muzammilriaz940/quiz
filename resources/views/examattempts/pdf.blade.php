@@ -350,8 +350,8 @@ information about remediation).
         </tr>
         <tr class="border-top text-center">
             <td colspan="10">
-                <p>Instructor Initials <u>{{ $EA->exam->test->user->name }}</u>
-                &nbsp;&nbsp;&nbsp;Instructor Number <u>{{ $EA->exam->test->user->id }}</u>
+                <p>Instructor Initials <u>{{ $EA->exam->test->user->instructorInitials }}</u>
+                &nbsp;&nbsp;&nbsp;Instructor Number <u>{{ $EA->exam->test->user->instructorNo }}</u>
                 &nbsp;&nbsp;&nbsp;Date <u>{{ date('Y-m-d', strtotime($EA->created_at)) }}</u></p>
             </td>
         </tr>
@@ -544,8 +544,8 @@ information about remediation).</li>
         </tr>
         <tr class="border-top text-center">
             <td colspan="10">
-                <p>Instructor Initials <u>{{ $EA->exam->test->user->name }}</u>
-                &nbsp;&nbsp;&nbsp;Instructor Number <u>{{ $EA->exam->test->user->id }}</u>
+                <p>Instructor Initials <u>{{ $EA->exam->test->user->instructorInitials }}</u>
+                &nbsp;&nbsp;&nbsp;Instructor Number <u>{{ $EA->exam->test->user->instructorNo }}</u>
                 &nbsp;&nbsp;&nbsp;Date <u>{{ date('Y-m-d', strtotime($EA->created_at)) }}</u></p>
             </td>
         </tr>

@@ -30,6 +30,26 @@
                             </div>
 
                             <div class="form-group col-md-4">
+                                <label for="instructorNo">Instructor #</label>
+                                <input type="text" class="form-control{{ $errors->has('instructorNo') ? ' is-invalid' : '' }}" id="instructorNo" name="instructorNo" value="{{ old('instructorNo') }}">
+                                @if ($errors->has('instructorNo'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('instructorNo') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="instructorInitials">Initials</label>
+                                <input type="text" class="form-control{{ $errors->has('instructorInitials') ? ' is-invalid' : '' }}" id="instructorInitials" name="instructorInitials" value="{{ old('instructorInitials') }}">
+                                @if ($errors->has('instructorInitials'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('instructorInitials') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
+                            <div class="form-group col-md-4">
                                 <label for="email">Email</label>
                                 <input autocomplete="off" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" name="email" value="{{ old('email') }}">
                                 @if ($errors->has('email'))

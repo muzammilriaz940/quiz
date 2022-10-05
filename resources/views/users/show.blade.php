@@ -23,6 +23,16 @@
                             </div>
 
                             <div class="form-group col-md-4">
+                                <label for="instructorNo">Instructor #</label>
+                                <input disabled type="text" class="form-control" id="instructorNo" name="instructorNo" value="{{ $user->instructorNo }}">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="instructorInitials">Initials</label>
+                                <input disabled type="text" class="form-control" id="instructorInitials" name="instructorInitials" value="{{ $user->instructorInitials }}">
+                            </div>
+
+                            <div class="form-group col-md-4">
                                 <label for="email">Email</label>
                                 <input disabled type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
                             </div>

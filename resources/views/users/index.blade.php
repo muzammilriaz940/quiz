@@ -38,6 +38,8 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Instructor #</th>
+                    <th>Initials</th>
                     <th>Created</th>
                     <th>Updated</th>
                     <th width="280px">Action</th>
@@ -47,8 +49,10 @@
                   @foreach ($users as $user)
                   <tr>
                     <td>{{ $user->id }}</td>
-                    <td>{{ $user->email }}</td>
                     <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ @$user->instructorNo }}</td>
+                    <td>{{ @$user->instructorInitials }}</td>
                     <td>{{ $user->created_by}} @ {{$user->created_at }}</td>
                     <td>@if(!empty($user->updated_by)) {{ $user->updated_by }} @ {{$user->updated_at }} @endif</td>
                     <td>
